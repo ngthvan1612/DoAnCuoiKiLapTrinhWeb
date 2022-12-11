@@ -16,7 +16,7 @@ public class SharedProductPageController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/templates2/shared/product.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/templates/shared/product.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
