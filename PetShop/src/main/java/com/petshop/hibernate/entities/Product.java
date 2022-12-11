@@ -5,19 +5,20 @@ import java.sql.Date;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="Product")
+@Table(name="Products", schema="dbo")
 public class Product {
 	private int id;
-	private String name;
 	private String productName;
 	private int price;
-	private int productCode;
+	private String productCode;
 	
 	private Date createdOn;
 	private Date deletedOn;
@@ -26,15 +27,17 @@ public class Product {
 		
 	}
 
-	public Product(String name, String productName, int price, int productCode) {
+	
+	public Product(String productName, int price, String productCode) {
 		super();
-		this.name = name;
 		this.productName = productName;
 		this.price = price;
 		this.productCode = productCode;
 	}
 	
 	@Id
+	@Column(name="Id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getId() {
 		return id;
 	}
@@ -42,15 +45,8 @@ public class Product {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	
+	@Column(name="ProductName")
 	public String getProductName() {
 		return productName;
 	}
@@ -58,7 +54,8 @@ public class Product {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-
+	
+	@Column(name="Price")
 	public int getPrice() {
 		return price;
 	}
@@ -66,15 +63,17 @@ public class Product {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-
-	public int getProductCode() {
+	
+	@Column(name="ProductCode")
+	public String getProductCode() {
 		return productCode;
 	}
 
-	public void setProductCode(int productCode) {
+	public void setProductCode(String productCode) {
 		this.productCode = productCode;
 	}
-
+	
+	@Column(name="Createdon")
 	public Date getCreatedOn() {
 		return createdOn;
 	}
@@ -82,7 +81,8 @@ public class Product {
 	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
 	}
-
+	
+	@Column(name="DeletedOn")
 	public Date getDeletedOn() {
 		return deletedOn;
 	}

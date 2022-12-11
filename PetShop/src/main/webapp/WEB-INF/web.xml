@@ -104,4 +104,44 @@
     <error-code>404</error-code>
     <location>/WEB-INF/templates/error-page/404.html</location>
   </error-page>
+  <servlet>
+    <description></description>
+    <display-name>AdminListProduct</display-name>
+    <servlet-name>AdminListProduct</servlet-name>
+    <servlet-class>com.petshop.servlets.admin.product.AdminListProduct</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminListProduct</servlet-name>
+    <url-pattern>/AdminListProduct</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AminCreateProduct</display-name>
+    <servlet-name>AminCreateProduct</servlet-name>
+    <servlet-class>com.petshop.servlets.admin.product.AminCreateProduct</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AminCreateProduct</servlet-name>
+    <url-pattern>/AminCreateProduct</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminUpdateProduct</display-name>
+    <servlet-name>AdminUpdateProduct</servlet-name>
+    <servlet-class>com.petshop.servlets.admin.product.AdminUpdateProduct</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminUpdateProduct</servlet-name>
+    <url-pattern>/AdminUpdateProduct</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminDeleteServlet</display-name>
+    <servlet-name>AdminDeleteServlet</servlet-name>
+    <servlet-class>com.petshop.servlets.admin.product.AdminDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDeleteServlet</servlet-name>
+    <url-pattern>/AdminDeleteServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
