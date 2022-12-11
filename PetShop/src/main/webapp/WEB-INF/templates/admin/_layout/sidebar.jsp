@@ -14,6 +14,12 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
+            
+            <li class="nav-item active">
+                <a class="nav-link" href="/PetShop">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Quay lại trang chính</span></a>
+            </li>
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
