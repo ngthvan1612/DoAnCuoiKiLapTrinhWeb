@@ -542,6 +542,8 @@
         </div>
     </div>
     <!-- End of Page Wrapper -->
+    
+    <c:import url="/WEB-INF/templates/admin/_layout/js-includes.jsp"/>
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">

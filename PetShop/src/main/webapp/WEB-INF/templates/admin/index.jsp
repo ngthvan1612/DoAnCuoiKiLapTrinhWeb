@@ -128,11 +128,6 @@
                 </div>
             </footer>
             <!-- End of Footer -->
-            
-            <c:import url="/WEB-INF/templates/admin/components/modal/logoutModal.jsp">
-              <c:param name="modalId" value="petShopModal_Logout"/>
-            </c:import>
-
         </div>
         <!-- End of Content Wrapper -->
 
@@ -144,7 +139,6 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
     <c:import url="/WEB-INF/templates/admin/_layout/js-includes.jsp"/>
 </body>
 
