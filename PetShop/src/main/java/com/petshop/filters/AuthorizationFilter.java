@@ -26,23 +26,25 @@ public class AuthorizationFilter extends HttpFilter implements Filter {
 	public void doFilter(ServletRequest _request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest)_request;
 		Cookie[] cookies = request.getCookies();
-		boolean isAuthenticated = false, isAdmin = false;
-		String userName = "";
-		for (Cookie cookie : cookies) {
-			if (cookie.getName().equals("JCOOKIE") && cookie.getValue().equals("tran-thi-bao-ngoc")) {
-				userName = "Bảo Ngọc";
-				isAuthenticated = true;
+		if (cookies != null) {
+			boolean isAuthenticated = false, isAdmin = false;
+			String userName = "";
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("JCOOKIE") && cookie.getValue().equals("tran-thi-bao-ngoc")) {
+					userName = "Bảo Ngọc";
+					isAuthenticated = true;
+				}
+				else if (cookie.getName().equals("JCOOKIE") && cookie.getValue().equals("admin")) {
+					userName = "Admin";
+					isAuthenticated = true;
+					isAdmin = true;
+				}
 			}
-			else if (cookie.getName().equals("JCOOKIE") && cookie.getValue().equals("admin")) {
-				userName = "Admin";
-				isAuthenticated = true;
-				isAdmin = true;
+			if (isAuthenticated) {
+				request.setAttribute("isAuthenticated", true);
+				request.setAttribute("username", userName);
+				request.setAttribute("isAdmin", isAdmin);
 			}
-		}
-		if (isAuthenticated) {
-			request.setAttribute("isAuthenticated", true);
-			request.setAttribute("username", userName);
-			request.setAttribute("isAdmin", isAdmin);
 		}
 		chain.doFilter(request, response);
 	}
