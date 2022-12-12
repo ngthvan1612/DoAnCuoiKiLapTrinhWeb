@@ -53,6 +53,7 @@
                     <a href="detail.html" class="dropdown-item">Blog Detail</a>
                 </div>
             </div>
+            <a href="/PetShop/gio-hang" class="nav-item nav-link">Giỏ hàng</a>
             <a href="/PetShop/ve-chung-toi" class="nav-item nav-link">Liên hệ</a>
             <c:choose>
               <c:when test='${requestScope["isAuthenticated"] == true}'>
