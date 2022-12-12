@@ -8,11 +8,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="cart.css" />
+    <link href="/PetShop/static/css/cart.css" rel="stylesheet" type="text/css">	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <title>Document</title>
   </head>
   <body>
+  
     <div class="petshop-cart">
       <div class="wrap cf">
         <h1 class="projTitle">
