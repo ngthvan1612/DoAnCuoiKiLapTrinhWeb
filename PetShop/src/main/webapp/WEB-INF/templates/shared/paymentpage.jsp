@@ -15,15 +15,22 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <title>Document</title>
+    
+	  <c:import url="/WEB-INF/templates/shared/components/header.jsp">
+	    <c:param name="title" value="Thanh toán"/>
+	    </c:import>
   </head>
   <body>
+    <c:import url="/WEB-INF/templates/shared/components/navbar.jsp"></c:import>
+    <c:import url="/WEB-INF/templates/shared/components/errorHandle.jsp"/>
+  	
+  
     <div class="petshop-cart">
       <div class="wrap cf">
         <div class="heading cf">
           <h1>Thông tin mua hàng</h1>
 
-          <a href="#" class="continue">Quay lại giỏ hàng</a>
+          <a href="/PetShop/gio-hang" class="continue">Quay lại giỏ hàng</a>
         </div>
         <div class="cart">
           <!--    <ul class="tableHead">
@@ -55,7 +62,7 @@
                     class="form-control"
                     placeholder="DiaChi"
                   />
-                  <label for="floatingPassword">Địa chỉ</label>
+                  <label for="floatingPassword">Địa chỉ </label>
                 </div>
                 <div class="form-floating mb-3">
                   <select
@@ -276,6 +283,7 @@
         </div>
       </div>
     </div>
+  <c:import url="/WEB-INF/templates/shared/components/js-includes.jsp"></c:import>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

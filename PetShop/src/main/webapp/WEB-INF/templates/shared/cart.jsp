@@ -10,9 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/PetShop/static/css/cart.css" rel="stylesheet" type="text/css">	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <title>Document</title>
+    
+	  <c:import url="/WEB-INF/templates/shared/components/header.jsp">
+	    <c:param name="title" value="Giỏ hàng"/>
+	  </c:import>
   </head>
   <body>
+    <c:import url="/WEB-INF/templates/shared/components/navbar.jsp"/>
+    <c:import url="/WEB-INF/templates/shared/components/errorHandle.jsp"/>
   
     <div class="petshop-cart">
       <div class="wrap cf">
@@ -21,7 +26,7 @@
         </h1>
         <div class="heading cf">
           <h1>Giỏ hàng của tôi</h1>
-          <a href="#" class="continue">Tiếp tục mua sắm</a>
+          <a href="/PetShop/" class="continue">Tiếp tục mua sắm</a>
         </div>
         <div class="cart">
           <!--    <ul class="tableHead">
@@ -149,12 +154,14 @@
               <span class="label">Tạm tính</span><span class="value">$35.00</span>
             </li>
             <li class="totalRow">
-              <a href="#" class="btn continue">Tiếp tục</a>
+              <a href="/PetShop/thanh-toan" class="btn continue">Tiếp tục</a>
             </li>
           </ul>
         </div>
       </div>
     </div>
+    
+  	<c:import url="/WEB-INF/templates/shared/components/js-includes.jsp"></c:import>
     <script>
     $('a.remove').click(function(){
       event.preventDefault();
