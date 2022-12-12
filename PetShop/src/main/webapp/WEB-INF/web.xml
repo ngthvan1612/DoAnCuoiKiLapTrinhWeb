@@ -144,4 +144,24 @@
     <servlet-name>AdminDeleteServlet</servlet-name>
     <url-pattern>/AdminDeleteServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SharedCartController</display-name>
+    <servlet-name>SharedCartController</servlet-name>
+    <servlet-class>com.petshop.servlets.shared.SharedCartController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SharedCartController</servlet-name>
+    <url-pattern>/SharedCartController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SharedPaymentPageController</display-name>
+    <servlet-name>SharedPaymentPageController</servlet-name>
+    <servlet-class>com.petshop.servlets.shared.SharedPaymentPageController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SharedPaymentPageController</servlet-name>
+    <url-pattern>/SharedPaymentPageController</url-pattern>
+  </servlet-mapping>
 </web-app>
