@@ -108,7 +108,7 @@
                     class="form-control"
                     id="floatingTextarea"
                   ></textarea>
-                  <label for="floatingTextarea">Ghi chú (tùy chọn)</label>
+                  <label for="floatingTextarea" >Ghi chú (tùy chọn)</label>
                 </div>
               </div>
               <div class="col">
@@ -150,7 +150,7 @@
                           id="flexRadioDefault1"
                         />
                         <label class="form-check-label" for="flexRadioDefault1">
-                          Thanh toán khia giao hàng (COD)
+                          Thanh toán khi giao hàng (COD)
                         </label>
                       </div>
                     </li>
