@@ -8,7 +8,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/PetShop/static/css/cart.css" rel="stylesheet" type="text/css">	
+    <link rel="stylesheet" href="cart.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <title>Document</title>
   </head>
@@ -19,8 +19,8 @@
           PETSHOP ABCDEF
         </h1>
         <div class="heading cf">
-          <h1>Giá» hÃ ng cá»§a tÃ´i</h1>
-          <a href="#" class="continue">Tiáº¿p tá»¥c mua sáº¯m</a>
+          <h1>Giỏ hàng của tôi</h1>
+          <a href="#" class="continue">Tiếp tục mua sắm</a>
         </div>
         <div class="cart">
           <!--    <ul class="tableHead">
@@ -145,10 +145,10 @@
           <ul>
             
             <li class="totalRow final">
-              <span class="label">Táº¡m tÃ­nh</span><span class="value">$35.00</span>
+              <span class="label">Tạm tính</span><span class="value">$35.00</span>
             </li>
             <li class="totalRow">
-              <a href="#" class="btn continue">Tiáº¿p tá»¥c</a>
+              <a href="#" class="btn continue">Tiếp tục</a>
             </li>
           </ul>
         </div>

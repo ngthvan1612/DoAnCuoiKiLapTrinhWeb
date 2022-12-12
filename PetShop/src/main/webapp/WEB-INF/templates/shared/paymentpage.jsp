@@ -21,9 +21,9 @@
     <div class="petshop-cart">
       <div class="wrap cf">
         <div class="heading cf">
-          <h1>ThÃ´ng tin mua hÃ ng</h1>
+          <h1>Thông tin mua hàng</h1>
 
-          <a href="#" class="continue">Quay láº¡i giá» hÃ ng</a>
+          <a href="#" class="continue">Quay lại giỏ hàng</a>
         </div>
         <div class="cart">
           <!--    <ul class="tableHead">
@@ -43,19 +43,11 @@
                     class="form-control"
                     placeholder="HoVaTen"
                   />
-                  <label for="floatingInput">Há» vÃ  tÃªn</label>
+                  <label for="floatingInput">Họ và tên</label>
                 </div>
                 <div class="form-floating mb-3">
                   <input type="text" class="form-control" placeholder="SDT" />
-                  <label for="floatingPassword">Sá» Äiá»n thoáº¡i</label>
-                </div>
-                <div class="form-floating mb-3">
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="name@example.com"
-                  />
-                  <label for="floatingPassword">Email</label>
+                  <label for="floatingInput">Số điện thoại</label>
                 </div>
                 <div class="form-floating mb-3">
                   <input
@@ -63,7 +55,7 @@
                     class="form-control"
                     placeholder="DiaChi"
                   />
-                  <label for="floatingPassword">Äá»a chá»</label>
+                  <label for="floatingPassword">Địa chỉ</label>
                 </div>
                 <div class="form-floating mb-3">
                   <select
@@ -76,7 +68,7 @@
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                   </select>
-                  <label for="floatingSelect">Tá»nh thÃ nh</label>
+                  <label for="floatingSelect">Tỉnh thành</label>
                 </div>
                 <div class="form-floating mb-3">
                   <select
@@ -89,7 +81,7 @@
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                   </select>
-                  <label for="floatingSelect">Quáº­n huyá»n</label>
+                  <label for="floatingSelect">Quận huyện</label>
                 </div>
                 <div class="form-floating mb-3">
                   <select
@@ -102,18 +94,18 @@
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                   </select>
-                  <label for="floatingSelect">PhÆ°á»ng xÃ£</label>
+                  <label for="floatingSelect">Phường xã</label>
                 </div>
                 <div class="form-floating mb-3">
                   <textarea
                     class="form-control"
                     id="floatingTextarea"
                   ></textarea>
-                  <label for="floatingTextarea">Ghi chÃº (tÃ¹y chá»n)</label>
+                  <label for="floatingTextarea">Ghi chú (tùy chọn)</label>
                 </div>
               </div>
               <div class="col">
-                <h2>PhÆ°Æ¡ng thá»©c thanh toÃ¡n</h2>
+                <h2>Phương thức thanh toán</h2>
                 <div class="card" style="width: 18rem">
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item">
@@ -125,7 +117,7 @@
                           id="flexRadioDefault1"
                         />
                         <label class="form-check-label" for="flexRadioDefault1">
-                            Chuyá»n khoáº£n qua ngÃ¢n hÃ ng
+                            Chuyển khoản qua ngân hàng
                         </label>
                       </div>
                     </li>
@@ -138,7 +130,7 @@
                           id="flexRadioDefault1"
                         />
                         <label class="form-check-label" for="flexRadioDefault1">
-                          Chuyá»n khoáº£n qua momo
+                          Chuyển khoản qua momo
                         </label>
                       </div>
                     </li>
@@ -151,7 +143,7 @@
                           id="flexRadioDefault1"
                         />
                         <label class="form-check-label" for="flexRadioDefault1">
-                          Thanh toÃ¡n khi giao hÃ ng (COD)
+                          Thanh toán khia giao hàng (COD)
                         </label>
                       </div>
                     </li>
@@ -162,7 +154,7 @@
                 <!-- column 2-->
                 
                 <ul class="cartWrap">
-                    <h2>ÄÆ¡n hÃ ng</h2>
+                    <h2>Đơn hàng</h2>
                   <li class="items odd">
                     <div class="infoWrap">
                       <div class="cartSection">
@@ -265,20 +257,20 @@
         <div class="subtotal cf">
           <ul>
             <li class="totalRow">
-              <span class="label">Táº¡m tÃ­nh</span
+              <span class="label">Tạm tính</span
               ><span class="value">$35.00</span>
             </li>
 
             <li class="totalRow">
-              <span class="label">PhÃ­ váº­n chuyá»n</span
+              <span class="label">Phí vận chuyển</span
               ><span class="value">$5.00</span>
             </li>
 
             <li class="totalRow final">
-              <span class="label">Tá»ng cá»ng</span><span class="value">$44.00</span>
+              <span class="label">Tổng tiền</span><span class="value">$44.00</span>
             </li>
             <li class="totalRow">
-              <a href="#" class="btn continue">Äáº·t hÃ ng</a>
+              <a href="#" class="btn continue">Đặt hàng</a>
             </li>
           </ul>
         </div>
