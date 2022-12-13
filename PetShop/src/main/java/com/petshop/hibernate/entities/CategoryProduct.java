@@ -13,26 +13,22 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="Products", schema="dbo")
-public class Product {
+@Table(name="CategoryProducts", schema="dbo")
+public class CategoryProduct {
   private Integer id;
   private Date createdOn;
   private Date deletedOn;
-  private String productName;
-  private Integer price;
-  private String productCode;
+  private Integer animalId;
   private Integer productId;
   
 
-  public Product() {
+  public CategoryProduct() {
     
   }
   
-  public Product(String productName, Integer price, String productCode, Integer productId) {
+  public CategoryProduct(Integer animalId, Integer productId) {
     super();
-    this.productName = productName;
-    this.price = price;
-    this.productCode = productCode;
+    this.animalId = animalId;
     this.productId = productId;
     
   }
@@ -67,31 +63,13 @@ public class Product {
     this.deletedOn = deletedOn;
   }
   
-  @Column(name="ProductName")
-  public String getProductName() {
-    return productName;
+  @Column(name="AnimalId")
+  public Integer getAnimalId() {
+    return animalId;
   }
 
-  public void setProductName(String productName) {
-    this.productName = productName;
-  }
-  
-  @Column(name="Price")
-  public Integer getPrice() {
-    return price;
-  }
-
-  public void setPrice(Integer price) {
-    this.price = price;
-  }
-  
-  @Column(name="ProductCode")
-  public String getProductCode() {
-    return productCode;
-  }
-
-  public void setProductCode(String productCode) {
-    this.productCode = productCode;
+  public void setAnimalId(Integer animalId) {
+    this.animalId = animalId;
   }
   
   @Column(name="ProductId")

@@ -1,4 +1,4 @@
-package com.petshop.servlets.admin.product;
+package com.petshop.servlets.admin.order;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,17 +13,17 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import com.petshop.hibernate.HibernateUtils;
-import com.petshop.hibernate.daos.ProductDAO;
-import com.petshop.hibernate.entities.Product;
+import com.petshop.hibernate.daos.OrderDAO;
+import com.petshop.hibernate.entities.Order;
 
-@WebServlet("/admin/product-management")
-public class AdminListProduct extends HttpServlet {
+@WebServlet("/admin/order-management")
+public class AdminListOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final ProductDAO productDAO;
+	private final OrderDAO orderDAO;
        
-    public AdminListProduct() {
+    public AdminListOrderServlet() {
         super();
-        this.productDAO = new ProductDAO();
+        this.orderDAO = new OrderDAO();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,15 +35,15 @@ public class AdminListProduct extends HttpServlet {
 		if (request.getParameter("limit") != null)
 			limit = Integer.parseInt(request.getParameter("limit"));
 		
-	    List<Product> products = this.productDAO.listProducts(currentPage, limit);
-	    long numberOfProducts = this.productDAO.numberOfProducts();
+	    List<Order> orders = this.orderDAO.listOrders(currentPage, limit);
+	    long numberOfOrders = this.orderDAO.numberOfOrders();
         
-        request.setAttribute("listProducts", products);
-        request.setAttribute("pageSize", numberOfProducts);
+        request.setAttribute("listOrders", orders);
+        request.setAttribute("pageSize", numberOfOrders);
         request.setAttribute("numberOfRowsPerPage", limit);
         request.setAttribute("currentPage", currentPage);
         
-        request.getRequestDispatcher("/WEB-INF/templates/admin/pages/product-management/list-product.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/templates/admin/pages/order-management/list-order.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

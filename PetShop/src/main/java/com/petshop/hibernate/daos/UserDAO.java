@@ -9,36 +9,38 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import com.petshop.hibernate.HibernateUtils;
-import com.petshop.hibernate.entities.Product;
+import com.petshop.hibernate.entities.User;
 
-public class ProductDAO {
-	public ProductDAO() {
+public class UserDAO {
+	public UserDAO() {
 		
 	}
 	
-	public Product createProduct(Product product) {
+	public User createUser(User user) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
     Session session = factory.getCurrentSession();
     session.getTransaction().begin();
     
-    product.setCreatedOn(new Date(System.currentTimeMillis()));
-    session.persist(product);
+    session.persist(user);
     session.flush();
       
     session.getTransaction().commit();
-		return product;
+		return user;
 	}
 	
-	public Product updateProduct(Product product) {
+	public User updateUser(User user) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 	    Session session = factory.getCurrentSession();
 	    session.getTransaction().begin();
 	    
-	    Product entity = (Product)session.get(Product.class, product.getId());
+	    User entity = (User)session.get(User.class, user.getId());
 
-      entity.setProductName(product.getProductName());
-      entity.setPrice(product.getPrice());
-      entity.setProductCode(product.getProductCode());
+      entity.setUsername(user.getUsername());
+      entity.setPassword(user.getPassword());
+      entity.setFullName(user.getFullName());
+      entity.setRole(user.getRole());
+      entity.setAddress(user.getAddress());
+      entity.setPhoneNumber(user.getPhoneNumber());
       	    
 	    session.update(entity);
 	    
@@ -47,13 +49,13 @@ public class ProductDAO {
       return entity;
 	}
 	
-	public long numberOfProducts() {
+	public long numberOfUsers() {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 	    Session session = factory.getCurrentSession();
 	    
         session.getTransaction().begin();
         
-        String sql = "select count(*) from " + Product.class.getName() + " p where p.deletedOn = null";
+        String sql = "select count(*) from " + User.class.getName() + " p where p.deletedOn = null";
         Query query = session.createQuery(sql);
         
         long result = (long)query.uniqueResult();
@@ -62,56 +64,56 @@ public class ProductDAO {
         return result;
 	}
 	
-	public List<Product> listProducts(int page, int limit) {
+	public List<User> listUsers(int page, int limit) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 	    Session session = factory.getCurrentSession();
 	    
         session.getTransaction().begin();
         
-        String sql = "select p from " + Product.class.getName() + " p where p.deletedOn = null";
-        Query<Product> query = session.createQuery(sql);
+        String sql = "select p from " + User.class.getName() + " p where p.deletedOn = null";
+        Query<User> query = session.createQuery(sql);
         
         if ((page - 1) * limit >= 0) {
         	query.setFirstResult((page - 1) * limit);
         	query.setMaxResults(limit);
         }
         
-        List<Product> products = query.list();
+        List<User> users = query.list();
         
         session.getTransaction().commit();
-        return products;
+        return users;
 	}
 	
-	public Product getProductById(int productId) {
+	public User getUserById(int userId) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 	    Session session = factory.getCurrentSession();
 	    
         session.getTransaction().begin();
         
-        String sql = "select p from " + Product.class.getName() + " p where id=:productId";
-        Query<Product> query = session.createQuery(sql);
-        query.setParameter("id", productId);
+        String sql = "select p from " + User.class.getName() + " p where id=:userId";
+        Query<User> query = session.createQuery(sql);
+        query.setParameter("id", userId);
         
-        List<Product> products = query.list();
+        List<User> users = query.list();
         
         session.getTransaction().commit();
         
-        if (products.size() == 0)
+        if (users.size() == 0)
         	return null;
         
-        return products.get(0);
+        return users.get(0);
 	}
 	
-	public void deleteProductById(int productId) {
+	public void deleteUserById(int userId) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 	    Session session = factory.getCurrentSession();
 	    session.getTransaction().begin();
 	    
-	    Product product = (Product)session.get(Product.class, productId);
+	    User user = (User)session.get(User.class, userId);
 	    
-	    product.setDeletedOn(new Date(System.currentTimeMillis()));
+	    user.setDeletedOn(new Date(System.currentTimeMillis()));
 	    
-	    session.update(product);
+	    session.update(user);
 	    
 	    session.flush();
         

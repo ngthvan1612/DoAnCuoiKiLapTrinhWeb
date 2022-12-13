@@ -9,36 +9,35 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import com.petshop.hibernate.HibernateUtils;
-import com.petshop.hibernate.entities.Product;
+import com.petshop.hibernate.entities.ProductImage;
 
-public class ProductDAO {
-	public ProductDAO() {
+public class ProductImageDAO {
+	public ProductImageDAO() {
 		
 	}
 	
-	public Product createProduct(Product product) {
+	public ProductImage createProductImage(ProductImage productImage) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
     Session session = factory.getCurrentSession();
     session.getTransaction().begin();
     
-    product.setCreatedOn(new Date(System.currentTimeMillis()));
-    session.persist(product);
+    session.persist(productImage);
     session.flush();
       
     session.getTransaction().commit();
-		return product;
+		return productImage;
 	}
 	
-	public Product updateProduct(Product product) {
+	public ProductImage updateProductImage(ProductImage productImage) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 	    Session session = factory.getCurrentSession();
 	    session.getTransaction().begin();
 	    
-	    Product entity = (Product)session.get(Product.class, product.getId());
+	    ProductImage entity = (ProductImage)session.get(ProductImage.class, productImage.getId());
 
-      entity.setProductName(product.getProductName());
-      entity.setPrice(product.getPrice());
-      entity.setProductCode(product.getProductCode());
+      entity.setOrder(productImage.getOrder());
+      entity.setProductImageLink(productImage.getProductImageLink());
+      entity.setProductId(productImage.getProductId());
       	    
 	    session.update(entity);
 	    
@@ -47,13 +46,13 @@ public class ProductDAO {
       return entity;
 	}
 	
-	public long numberOfProducts() {
+	public long numberOfProductImages() {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 	    Session session = factory.getCurrentSession();
 	    
         session.getTransaction().begin();
         
-        String sql = "select count(*) from " + Product.class.getName() + " p where p.deletedOn = null";
+        String sql = "select count(*) from " + ProductImage.class.getName() + " p where p.deletedOn = null";
         Query query = session.createQuery(sql);
         
         long result = (long)query.uniqueResult();
@@ -62,56 +61,56 @@ public class ProductDAO {
         return result;
 	}
 	
-	public List<Product> listProducts(int page, int limit) {
+	public List<ProductImage> listProductImages(int page, int limit) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 	    Session session = factory.getCurrentSession();
 	    
         session.getTransaction().begin();
         
-        String sql = "select p from " + Product.class.getName() + " p where p.deletedOn = null";
-        Query<Product> query = session.createQuery(sql);
+        String sql = "select p from " + ProductImage.class.getName() + " p where p.deletedOn = null";
+        Query<ProductImage> query = session.createQuery(sql);
         
         if ((page - 1) * limit >= 0) {
         	query.setFirstResult((page - 1) * limit);
         	query.setMaxResults(limit);
         }
         
-        List<Product> products = query.list();
+        List<ProductImage> productImages = query.list();
         
         session.getTransaction().commit();
-        return products;
+        return productImages;
 	}
 	
-	public Product getProductById(int productId) {
+	public ProductImage getProductImageById(int productImageId) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 	    Session session = factory.getCurrentSession();
 	    
         session.getTransaction().begin();
         
-        String sql = "select p from " + Product.class.getName() + " p where id=:productId";
-        Query<Product> query = session.createQuery(sql);
-        query.setParameter("id", productId);
+        String sql = "select p from " + ProductImage.class.getName() + " p where id=:productImageId";
+        Query<ProductImage> query = session.createQuery(sql);
+        query.setParameter("id", productImageId);
         
-        List<Product> products = query.list();
+        List<ProductImage> productImages = query.list();
         
         session.getTransaction().commit();
         
-        if (products.size() == 0)
+        if (productImages.size() == 0)
         	return null;
         
-        return products.get(0);
+        return productImages.get(0);
 	}
 	
-	public void deleteProductById(int productId) {
+	public void deleteProductImageById(int productImageId) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 	    Session session = factory.getCurrentSession();
 	    session.getTransaction().begin();
 	    
-	    Product product = (Product)session.get(Product.class, productId);
+	    ProductImage productImage = (ProductImage)session.get(ProductImage.class, productImageId);
 	    
-	    product.setDeletedOn(new Date(System.currentTimeMillis()));
+	    productImage.setDeletedOn(new Date(System.currentTimeMillis()));
 	    
-	    session.update(product);
+	    session.update(productImage);
 	    
 	    session.flush();
         

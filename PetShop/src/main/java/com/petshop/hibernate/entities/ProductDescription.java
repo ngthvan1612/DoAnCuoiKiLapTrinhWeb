@@ -13,26 +13,26 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="Products", schema="dbo")
-public class Product {
+@Table(name="ProductDescriptions", schema="dbo")
+public class ProductDescription {
   private Integer id;
   private Date createdOn;
   private Date deletedOn;
-  private String productName;
-  private Integer price;
-  private String productCode;
+  private String type;
+  private Integer order;
+  private String content;
   private Integer productId;
   
 
-  public Product() {
+  public ProductDescription() {
     
   }
   
-  public Product(String productName, Integer price, String productCode, Integer productId) {
+  public ProductDescription(String type, Integer order, String content, Integer productId) {
     super();
-    this.productName = productName;
-    this.price = price;
-    this.productCode = productCode;
+    this.type = type;
+    this.order = order;
+    this.content = content;
     this.productId = productId;
     
   }
@@ -67,31 +67,31 @@ public class Product {
     this.deletedOn = deletedOn;
   }
   
-  @Column(name="ProductName")
-  public String getProductName() {
-    return productName;
+  @Column(name="Type")
+  public String getType() {
+    return type;
   }
 
-  public void setProductName(String productName) {
-    this.productName = productName;
+  public void setType(String type) {
+    this.type = type;
   }
   
-  @Column(name="Price")
-  public Integer getPrice() {
-    return price;
+  @Column(name="Order")
+  public Integer getOrder() {
+    return order;
   }
 
-  public void setPrice(Integer price) {
-    this.price = price;
+  public void setOrder(Integer order) {
+    this.order = order;
   }
   
-  @Column(name="ProductCode")
-  public String getProductCode() {
-    return productCode;
+  @Column(name="Content")
+  public String getContent() {
+    return content;
   }
 
-  public void setProductCode(String productCode) {
-    this.productCode = productCode;
+  public void setContent(String content) {
+    this.content = content;
   }
   
   @Column(name="ProductId")
