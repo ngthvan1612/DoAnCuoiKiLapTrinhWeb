@@ -44,7 +44,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Sản phẩm đang kinh doanh</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Các loại thú cưng</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -65,20 +65,18 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Mã sản phẩm</th>
-                                            <th>Tên sản phẩm</th>
-                                            <th>Giá</th>
+                                            <th>Animal Id</th>
+                                            <th>Animal name</th>
                                             <th>Ngày tạo</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      <c:forEach items='${requestScope["listProducts"]}' var='product'>
+                                      <c:forEach items='${requestScope["listAnimals"]}' var='animal'>
 	                                      <tr>
-	                                         <td>${product.getProductCode()}</td>
-	                                         <td>${product.getProductName()}</td>
-	                                         <td>${product.getPrice()} VNĐ</td>
-	                                         <td>${product.getCreatedOn()}</td>
+	                                         <td>${animal.getId()}</td>
+	                                         <td>${animal.getAnimalName()}</td>
+	                                         <td>${animal.getCreatedOn()}</td>
 	                                         <td>
 	                                           <button
 	                                             class="btn btn-link shadow-none btn-sm"

@@ -9,6 +9,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import com.petshop.hibernate.HibernateUtils;
+import com.petshop.hibernate.entities.Category;
+import com.petshop.hibernate.entities.CategoryProduct;
 import com.petshop.hibernate.entities.Product;
 
 public class ProductDAO {
@@ -60,6 +62,28 @@ public class ProductDAO {
         
         session.getTransaction().commit();
         return result;
+	}
+	
+	public List<Product> listProductsByCategoryId(int categoryId, int page, int limit) {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+	    Session session = factory.getCurrentSession();
+	    
+        session.getTransaction().begin();
+        
+        String sql = "select p from " + CategoryProduct.class.getName() + " c inner join " + Product.class.getName() + " p on c.productId = p.id where c.categoryId = :categoryId and p.deletedOn = null and c.deletedOn = null";
+        Query<Product> query = session.createQuery(sql);
+        
+        query.setParameter("categoryId", categoryId);
+        
+        if ((page - 1) * limit >= 0) {
+        	query.setFirstResult((page - 1) * limit);
+        	query.setMaxResults(limit);
+        }
+        
+        List<Product> products = query.list();
+        
+        session.getTransaction().commit();
+        return products;
 	}
 	
 	public List<Product> listProducts(int page, int limit) {

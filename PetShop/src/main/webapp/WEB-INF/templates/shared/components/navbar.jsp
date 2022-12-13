@@ -12,47 +12,22 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse" style="padding-right:20px;">
         <div class="navbar-nav ms-auto py-0">
-            <a href="/PetShop/" class="nav-item nav-link">Trang chủ</a>
-            <div class="nav-item dropdown">
-                <a href="/PetShop/san-pham?categoryName=Chó" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Chó</a>
+        
+        <a href="/PetShop/" class="nav-item nav-link">Trang chủ</a>
+        <c:forEach items='${requestScope["listAnimals"]}' var='animal'>
+        	<div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">${animal.getAnimalName()}</a>
                 <div class="dropdown-menu m-0">
-                    <a href="/PetShop/san-pham?categoryTitle=Chuồng cho chó" class="dropdown-item">Chuồng cho chó</a>
-                    <a href="team.html" class="dropdown-item">The Team</a>
-                    <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                    <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                    <a href="detail.html" class="dropdown-item">Blog Detail</a>
+                <c:forEach items='${requestScope["listCategories"]}' var='category'>
+                	<c:if test='${animal.getId() == category.getAnimalId()}'>
+                    	<a href="/PetShop/san-pham?categoryId=${category.getId()}" class="dropdown-item">${category.getCategoryName()}</a>
+                    </c:if>
+                </c:forEach>
                 </div>
             </div>
-            <div class="nav-item dropdown">
-                <a href="/PetShop/san-pham?categoryName=Mèo" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mèo</a>
-                <div class="dropdown-menu m-0">
-                    <a href="product.html" class="dropdown-item">Chuồng cho mèo</a>
-                    <a href="team.html" class="dropdown-item">Thuốc cho mèo</a>
-                    <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                    <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                    <a href="detail.html" class="dropdown-item">Blog Detail</a>
-                </div>
-            </div>
-            <div class="nav-item dropdown">
-                <a href="/PetShop/san-pham?categoryName=Chim" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Chim</a>
-                <div class="dropdown-menu m-0">
-                    <a href="price.html" class="dropdown-item">Pricing Plan</a>
-                    <a href="team.html" class="dropdown-item">The Team</a>
-                    <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                    <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                    <a href="detail.html" class="dropdown-item">Blog Detail</a>
-                </div>
-            </div>
-            <div class="nav-item dropdown">
-                <a href="/PetShop/san-pham?categoryName=Hamster" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Hamster</a>
-                <div class="dropdown-menu m-0">
-                    <a href="price.html" class="dropdown-item">Pricing Plan</a>
-                    <a href="team.html" class="dropdown-item">The Team</a>
-                    <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                    <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                    <a href="detail.html" class="dropdown-item">Blog Detail</a>
-                </div>
-            </div>
+        </c:forEach>	
+        
+           
             <a href="/PetShop/gio-hang" class="nav-item nav-link">Giỏ hàng</a>
             <a href="/PetShop/ve-chung-toi" class="nav-item nav-link">Liên hệ</a>
             <c:choose>

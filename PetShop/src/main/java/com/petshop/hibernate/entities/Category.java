@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="Categorys", schema="dbo")
+@Table(name="Categories", schema="dbo")
 public class Category {
   private Integer id;
   private Date createdOn;

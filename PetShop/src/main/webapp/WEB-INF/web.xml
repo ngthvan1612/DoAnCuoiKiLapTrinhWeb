@@ -164,4 +164,14 @@
     <servlet-name>SharedPaymentPageController</servlet-name>
     <url-pattern>/SharedPaymentPageController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BaseSharedServlet</display-name>
+    <servlet-name>BaseSharedServlet</servlet-name>
+    <servlet-class>com.petshop.servlets.shared.BaseSharedServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BaseSharedServlet</servlet-name>
+    <url-pattern>/BaseSharedServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

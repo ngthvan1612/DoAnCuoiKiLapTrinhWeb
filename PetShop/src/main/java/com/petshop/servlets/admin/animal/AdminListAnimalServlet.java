@@ -43,7 +43,7 @@ public class AdminListAnimalServlet extends HttpServlet {
         request.setAttribute("numberOfRowsPerPage", limit);
         request.setAttribute("currentPage", currentPage);
         
-        request.getRequestDispatcher("/WEB-INF/templates/admin/pages/animal-management/list-animal.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/templates/admin/pages/animal-management/list-animals.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

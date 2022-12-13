@@ -37,7 +37,6 @@ public class Product {
     
   }
 
-  
   @Id
   @Column(name="Id")
   @GeneratedValue(strategy=GenerationType.IDENTITY)
