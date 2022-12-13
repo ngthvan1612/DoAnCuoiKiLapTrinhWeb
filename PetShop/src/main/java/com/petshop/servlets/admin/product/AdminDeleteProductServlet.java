@@ -18,12 +18,12 @@ import com.petshop.hibernate.HibernateUtils;
 import com.petshop.hibernate.daos.ProductDAO;
 import com.petshop.hibernate.entities.Product;
 
-@WebServlet("/admin/product-management/create")
-public class AminCreateProduct extends HttpServlet {
+@WebServlet("/admin/product-management/delete")
+public class AdminDeleteProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final ProductDAO productDAO;
-       
-    public AminCreateProduct() {
+	
+    public AdminDeleteProductServlet() {
         super();
         this.productDAO = new ProductDAO();
     }
@@ -33,17 +33,16 @@ public class AminCreateProduct extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Product product = new Product();
+		System.out.println(request.getParameter("id"));
+		int productId = Integer.parseInt(request.getParameter("id"));
 		
-		product.setProductName(request.getParameter("productName"));
-		product.setProductCode(request.getParameter("productCode"));
-		product.setPrice(Integer.parseInt(request.getParameter("price")));
-		product.setCreatedOn(new Date(System.currentTimeMillis()));
-		
-		this.productDAO.createProduct(product);
+		this.productDAO.deleteProductById(productId);
 		
         request.setAttribute("success_messages", new String[] { "Tạo sản phẩm thành công" });
         
-        response.sendRedirect("/PetShop/admin/product-management?page=1&limit=50");
+        RequestDispatcher rd = request.getRequestDispatcher("/admin/product-management");
+        rd.include(request, response);
+        
+		response.sendRedirect("/PetShop/admin/product-management");
 	}
 }

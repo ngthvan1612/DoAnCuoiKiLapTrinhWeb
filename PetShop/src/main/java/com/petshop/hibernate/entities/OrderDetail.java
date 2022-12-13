@@ -13,26 +13,24 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="Products", schema="dbo")
-public class Product {
+@Table(name="OrderDetails", schema="dbo")
+public class OrderDetail {
   private Integer id;
   private Date createdOn;
   private Date deletedOn;
-  private String productName;
-  private Integer price;
-  private String productCode;
+  private Integer quantity;
+  private Integer orderId;
   private Integer productId;
   
 
-  public Product() {
+  public OrderDetail() {
     
   }
   
-  public Product(String productName, Integer price, String productCode, Integer productId) {
+  public OrderDetail(Integer quantity, Integer orderId, Integer productId) {
     super();
-    this.productName = productName;
-    this.price = price;
-    this.productCode = productCode;
+    this.quantity = quantity;
+    this.orderId = orderId;
     this.productId = productId;
     
   }
@@ -67,31 +65,22 @@ public class Product {
     this.deletedOn = deletedOn;
   }
   
-  @Column(name="ProductName")
-  public String getProductName() {
-    return productName;
+  @Column(name="Quantity")
+  public Integer getQuantity() {
+    return quantity;
   }
 
-  public void setProductName(String productName) {
-    this.productName = productName;
+  public void setQuantity(Integer quantity) {
+    this.quantity = quantity;
   }
   
-  @Column(name="Price")
-  public Integer getPrice() {
-    return price;
+  @Column(name="OrderId")
+  public Integer getOrderId() {
+    return orderId;
   }
 
-  public void setPrice(Integer price) {
-    this.price = price;
-  }
-  
-  @Column(name="ProductCode")
-  public String getProductCode() {
-    return productCode;
-  }
-
-  public void setProductCode(String productCode) {
-    this.productCode = productCode;
+  public void setOrderId(Integer orderId) {
+    this.orderId = orderId;
   }
   
   @Column(name="ProductId")

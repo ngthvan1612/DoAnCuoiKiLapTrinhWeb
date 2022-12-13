@@ -1,4 +1,4 @@
-package com.petshop.servlets.admin.product;
+package com.petshop.servlets.admin.animal;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -15,17 +15,17 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import com.petshop.hibernate.HibernateUtils;
-import com.petshop.hibernate.daos.ProductDAO;
-import com.petshop.hibernate.entities.Product;
+import com.petshop.hibernate.daos.AnimalDAO;
+import com.petshop.hibernate.entities.Animal;
 
-@WebServlet("/admin/product-management/delete")
-public class AdminDeleteProduct extends HttpServlet {
+@WebServlet("/admin/animal-management/create")
+public class AdminCreateAnimalServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final ProductDAO productDAO;
-	
-    public AdminDeleteProduct() {
+	private final AnimalDAO animalDAO;
+       
+    public AdminCreateAnimalServlet() {
         super();
-        this.productDAO = new ProductDAO();
+        this.animalDAO = new AnimalDAO();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,16 +33,17 @@ public class AdminDeleteProduct extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("id"));
-		int productId = Integer.parseInt(request.getParameter("id"));
+		Animal animal = new Animal();
 		
-		this.productDAO.deleteProductById(productId);
 		
-        request.setAttribute("success_messages", new String[] { "Tạo sản phẩm thành công" });
-        
-        RequestDispatcher rd = request.getRequestDispatcher("/admin/product-management");
-        rd.include(request, response);
-        
-		response.sendRedirect("/PetShop/admin/product-management");
+		
+		animal.setAnimalName(request.getParameter("animalName"));
+		
+		
+		
+		this.animalDAO.createAnimal(animal);
+		
+		request.setAttribute("success_messages", new String[] { "Tạo động vật thành công" });
+		response.sendRedirect("/PetShop/admin/animal-management?page=1&limit=50");
 	}
 }

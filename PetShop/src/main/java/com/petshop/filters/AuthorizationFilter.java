@@ -40,6 +40,7 @@ public class AuthorizationFilter extends HttpFilter implements Filter {
 					isAdmin = true;
 				}
 			}
+			
 			if (isAuthenticated) {
 				request.setAttribute("isAuthenticated", true);
 				request.setAttribute("username", userName);
