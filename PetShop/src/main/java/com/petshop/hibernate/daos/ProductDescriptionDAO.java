@@ -90,7 +90,7 @@ public class ProductDescriptionDAO {
         
         String sql = "select p from " + ProductDescription.class.getName() + " p where id=:productDescriptionId";
         Query<ProductDescription> query = session.createQuery(sql);
-        query.setParameter("id", productDescriptionId);
+        query.setParameter("productDescriptionId", productDescriptionId);
         
         List<ProductDescription> productDescriptions = query.list();
         

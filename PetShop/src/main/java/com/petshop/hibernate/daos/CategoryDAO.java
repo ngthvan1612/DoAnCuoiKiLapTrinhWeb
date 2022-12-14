@@ -88,7 +88,7 @@ public class CategoryDAO {
         
         String sql = "select p from " + Category.class.getName() + " p where id=:categoryId";
         Query<Category> query = session.createQuery(sql);
-        query.setParameter("id", categoryId);
+        query.setParameter("categoryId", categoryId);
         
         List<Category> categorys = query.list();
         

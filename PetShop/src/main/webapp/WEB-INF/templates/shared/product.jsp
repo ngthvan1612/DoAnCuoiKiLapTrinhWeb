@@ -19,7 +19,7 @@
         <div class="container">
             <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
                 <h6 class="text-primary text-uppercase">Sản phẩm</h6>
-                <h1 class="display-7 text-uppercase mb-0">Chuồng cho chó</h1>
+                <h1 class="display-7 text-uppercase mb-0" style="color: white;">${category.getCategoryName()}</h1>
             </div>
             <div class="row">
               <c:forEach items='${listProducts}' var='product'>
@@ -44,6 +44,8 @@
   for (const vnd of vnds) {
 	  vnd.textContent = vndFormat(parseInt(vnd.textContent));
   }
+  
+  
   </script>
 </body>
 </html>

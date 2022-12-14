@@ -9,14 +9,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/login")
-public class SharedLoginController extends HttpServlet {
+public class SharedLoginController extends BaseSharedServlet {
 	private static final long serialVersionUID = 1L;
        
     public SharedLoginController() {
         super();
     }
 
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		super.doGet(request, response);
 		if (request.getAttribute("isAuthenticated") != null && (boolean)request.getAttribute("isAuthenticated")) {
 			response.sendRedirect("/PetShop");
 		}
@@ -24,7 +26,12 @@ public class SharedLoginController extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/templates/shared/login.jsp").forward(request, response);
 	}
 
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		super.doPost(request, response);
+		response.setStatus(405);
+		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		System.out.printf("Username = %s\nPassword = %s\n", username, password);

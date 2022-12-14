@@ -87,7 +87,7 @@ public class AnimalDAO {
         
         String sql = "select p from " + Animal.class.getName() + " p where id=:animalId";
         Query<Animal> query = session.createQuery(sql);
-        query.setParameter("id", animalId);
+        query.setParameter("animalId", animalId);
         
         List<Animal> animals = query.list();
         

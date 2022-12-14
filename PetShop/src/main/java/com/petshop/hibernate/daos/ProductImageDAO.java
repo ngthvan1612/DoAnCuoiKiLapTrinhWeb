@@ -89,7 +89,7 @@ public class ProductImageDAO {
         
         String sql = "select p from " + ProductImage.class.getName() + " p where id=:productImageId";
         Query<ProductImage> query = session.createQuery(sql);
-        query.setParameter("id", productImageId);
+        query.setParameter("productImageId", productImageId);
         
         List<ProductImage> productImages = query.list();
         

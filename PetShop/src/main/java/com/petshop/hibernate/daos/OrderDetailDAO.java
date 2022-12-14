@@ -89,7 +89,7 @@ public class OrderDetailDAO {
         
         String sql = "select p from " + OrderDetail.class.getName() + " p where id=:orderDetailId";
         Query<OrderDetail> query = session.createQuery(sql);
-        query.setParameter("id", orderDetailId);
+        query.setParameter("orderDetailId", orderDetailId);
         
         List<OrderDetail> orderDetails = query.list();
         

@@ -92,7 +92,7 @@ public class UserDAO {
         
         String sql = "select p from " + User.class.getName() + " p where id=:userId";
         Query<User> query = session.createQuery(sql);
-        query.setParameter("id", userId);
+        query.setParameter("userId", userId);
         
         List<User> users = query.list();
         

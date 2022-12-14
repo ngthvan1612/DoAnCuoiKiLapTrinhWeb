@@ -18,11 +18,13 @@ import com.petshop.hibernate.entities.*;
 public class SharedProductPageController extends BaseSharedServlet {
 	private static final long serialVersionUID = 1L;
 	private final ProductDAO productDAO;
+	private final CategoryDAO categoryDAO;
 	
     public SharedProductPageController() {
         super();
         
         this.productDAO = new ProductDAO();
+        this.categoryDAO = new CategoryDAO();
     }
     
     @Override
@@ -33,10 +35,14 @@ public class SharedProductPageController extends BaseSharedServlet {
 		if (request.getParameter("categoryId") != null) {
 			int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 			products = this.productDAO.listProductsByCategoryId(categoryId, 1, 20);
+			Category category = this.categoryDAO.getCategoryById(categoryId);
+			request.setAttribute("category", category);
 		}
 		else {
 			products = this.productDAO.listProducts(1, 20);
 		}
+		
+		
 		
 		request.setAttribute("listProducts", products);
 		request.getRequestDispatcher("/WEB-INF/templates/shared/product.jsp").forward(request, response);
