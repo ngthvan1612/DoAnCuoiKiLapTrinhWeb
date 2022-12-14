@@ -82,6 +82,23 @@ public class ProductDescriptionDAO {
         return productDescriptions;
 	}
 	
+	public List<ProductDescription> listProductDescriptionsByProductId(int productId) {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+	    Session session = factory.getCurrentSession();
+	    
+        session.getTransaction().begin();
+        
+        String sql = "select p from " + ProductDescription.class.getName() + " p where p.deletedOn = null and p.productId=:productId";
+        Query<ProductDescription> query = session.createQuery(sql);
+        
+        query.setParameter("productId", productId);
+        
+        List<ProductDescription> productDescriptions = query.list();
+        
+        session.getTransaction().commit();
+        return productDescriptions;
+	} 
+	
 	public ProductDescription getProductDescriptionById(int productDescriptionId) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 	    Session session = factory.getCurrentSession();

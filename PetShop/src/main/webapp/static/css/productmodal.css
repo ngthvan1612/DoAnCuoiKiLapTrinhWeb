@@ -29,57 +29,57 @@ body.modal-active {
     z-index: 1;
 }
 
-.product-modal #modal-container.six {
+.product-modal #modal-container.modal-blabla-active {
     transform: scale(1);
 }
 
-.product-modal #modal-container.six .modal-background {
+.product-modal #modal-container.modal-blabla-active .modal-background {
     background: rgba(0, 0, 0, 0);
     animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-.product-modal #modal-container.six .modal-background .modal {
+.product-modal #modal-container.modal-blabla-active .modal-background .modal {
     background-color: transparent;
     animation: modalFadeIn 0.5s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-.product-modal #modal-container.six .modal-background .modal h2,
-.product-modal #modal-container.six .modal-background .modal img,
-.product-modal #modal-container.six .modal-background .modal a,
-.product-modal #modal-container.six .modal-background .modal .product-description,
-.product-modal #modal-container.six .modal-background .modal p {
+.product-modal #modal-container.modal-blabla-active .modal-background .modal h2,
+.product-modal #modal-container.modal-blabla-active .modal-background .modal img,
+.product-modal #modal-container.modal-blabla-active .modal-background .modal a,
+.product-modal #modal-container.modal-blabla-active .modal-background .modal .product-description,
+.product-modal #modal-container.modal-blabla-active .modal-background .modal p {
     opacity: 0;
     position: relative;
     animation: modalContentFadeIn 0.5s 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 
-.product-modal #modal-container.six .modal-background .modal .product-description {
+.product-modal #modal-container.modal-blabla-active .modal-background .modal .product-description {
 	margin-bottom: 15px;
 }
 
-.product-modal #modal-container.six .modal-background .modal .modal-svg rect {
+.product-modal #modal-container.modal-blabla-active .modal-background .modal .modal-svg rect {
     animation: sketchIn 0.5s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-.product-modal #modal-container.six.out {
+.product-modal #modal-container.modal-blabla-active.out {
     animation: quickScaleDown 0s 0.5s linear forwards;
 }
 
-.product-modal #modal-container.six.out .modal-background {
+.product-modal #modal-container.modal-blabla-active.out .modal-background {
     animation: fadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-.product-modal #modal-container.six.out .modal-background .modal {
+.product-modal #modal-container.modal-blabla-active.out .modal-background .modal {
     animation: modalFadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-.product-modal #modal-container.six.out .modal-background .modal h2,
-.product-modal #modal-container.six.out .modal-background .modal p {
+.product-modal #modal-container.modal-blabla-active.out .modal-background .modal h2,
+.product-modal #modal-container.modal-blabla-active.out .modal-background .modal p {
     animation: modalContentFadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-.product-modal #modal-container.six.out .modal-background .modal .modal-svg rect {
+.product-modal #modal-container.modal-blabla-active.out .modal-background .modal .modal-svg rect {
     animation: sketchOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 

@@ -36,125 +36,46 @@
          <li>Remove</li>
       </ul>-->
           <ul class="cartWrap">
-            <li class="items odd">
-              <div class="infoWrap">
-                <div class="cartSection">
-                  <img
-                    src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg"
-                    alt=""
-                    class="itemImg"
-                  />
-                  <p class="itemNumber">#QUE-007544-002</p>
-                  <h3>Item Name 1</h3>
-
-                  <p>
-                    <input type="text" class="qty" placeholder="3" /> x $5.00
-                  </p>
-
-                  <p class="stockStatus">In Stock</p>
-                </div>
-
-                <div class="prodTotal cartSection">
-                  <p>$15.00</p>
-                </div>
-                <div class="cartSection removeWrap">
-                  <a href="#" class="remove">x</a>
-                </div>
-              </div>
-            </li>
-            <li class="items even">
-              <div class="infoWrap">
-                <div class="cartSection">
-                  <img
-                    src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg"
-                    alt=""
-                    class="itemImg"
-                  />
-                  <p class="itemNumber">#QUE-007544-002</p>
-                  <h3>Item Name 1</h3>
-
-                  <p>
-                    <input type="text" class="qty" placeholder="3" /> x $5.00
-                  </p>
-
-                  <p class="stockStatus">In Stock</p>
-                </div>
-
-                <div class="prodTotal cartSection">
-                  <p>$15.00</p>
-                </div>
-                <div class="cartSection removeWrap">
-                  <a href="#" class="remove">x</a>
-                </div>
-              </div>
-            </li>
-
-            <li class="items odd">
-              <div class="infoWrap">
-                <div class="cartSection">
-                  <img
-                    src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg"
-                    alt=""
-                    class="itemImg"
-                  />
-                  <p class="itemNumber">#QUE-007544-002</p>
-                  <h3>Item Name 1</h3>
-
-                  <p>
-                    <input type="text" class="qty" placeholder="3" /> x $5.00
-                  </p>
-
-                  <p class="stockStatus out">Out of Stock</p>
-                </div>
-
-                <div class="prodTotal cartSection">
-                  <p>$15.00</p>
-                </div>
-                <div class="cartSection removeWrap">
-                  <a href="#" class="remove">x</a>
-                </div>
-              </div>
-            </li>
-            <li class="items even">
-              <div class="infoWrap">
-                <div class="cartSection info">
-                  <img
-                    src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg"
-                    alt=""
-                    class="itemImg"
-                  />
-                  <p class="itemNumber">#QUE-007544-002</p>
-                  <h3>Item Name 1</h3>
-
-                  <p>
-                    <input type="text" class="qty" placeholder="3" /> x $5.00
-                  </p>
-
-                  <p class="stockStatus">In Stock</p>
-                </div>
-
-                <div class="prodTotal cartSection">
-                  <p>$15.00</p>
-                </div>
-
-                <div class="cartSection removeWrap">
-                  <a href="#" class="remove">x</a>
-                </div>
-              </div>
-              
-            </li>
+          	<c:forEach items="${cartItems}" var='cartItem'>
+          		<li class="items odd">
+	              <div class="infoWrap">
+	                <div class="cartSection">
+	                  <img
+	                    src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg"
+	                    alt=""
+	                    class="itemImg"
+	                  />
+	                  <h3>${cartItem.productName}</h3>
+	
+	                  <p>
+	                    <input type="text" class="qty" placeholder="${cartItem.getNum()}"/> x <span class="vnd">${cartItem.getPrice()}</span>
+	                  </p>
+	                </div>
+	
+	                <div class="prodTotal cartSection">
+	                  <p class="vnd"></p>
+	                </div>
+	                <div class="cartSection removeWrap" style="margin-left: auto; margin-right: 0px; float:right;">
+	                	<form method="post" action="/PetShop/xoa-san-pham">
+	                		<input type="hidden" name="productId" value="${cartItem.getProductId()}">
+	                  		<input type="submit" href="#" class="remove" value="x">
+	                  	</form>
+	                </div>
+	              </div>
+	            </li>
+          	</c:forEach>
           </ul>
         </div>
 
-
         <div class="subtotal cf">
           <ul>
-            
-            <li class="totalRow final">
+            <li class="totalRow final" style="display:none">
               <span class="label">Tạm tính</span><span class="value">$35.00</span>
             </li>
             <li class="totalRow">
-              <a href="/PetShop/thanh-toan" class="btn continue">Tiếp tục</a>
+            	<form>
+            		<a href="/PetShop/thanh-toan" class="btn continue">Tiếp tục</a>
+            	</form>
             </li>
           </ul>
         </div>

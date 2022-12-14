@@ -33,10 +33,8 @@ public class ProductDescription {
     this.type = type;
     this.order = order;
     this.content = content;
-    this.productId = productId;
-    
+    this.productId = productId; 
   }
-
   
   @Id
   @Column(name="Id")
@@ -76,7 +74,7 @@ public class ProductDescription {
     this.type = type;
   }
   
-  @Column(name="Order")
+  @Column(name="[Order]")
   public Integer getOrder() {
     return order;
   }

@@ -37,7 +37,7 @@ public class AdminCreateCategoryProductServlet extends HttpServlet {
 		
 		
 		
-		categoryProduct.setAnimalId(Integer.parseInt(request.getParameter("animalId")));
+		//categoryProduct.setAnimalId(Integer.parseInt(request.getParameter("animalId")));
 		
 		
 		

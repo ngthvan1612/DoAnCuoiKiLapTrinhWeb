@@ -65,7 +65,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Mã sản phẩm</th>
+                                            <th>Mã đơn hàng</th>
                                             <th>Tên sản phẩm</th>
                                             <th>Giá</th>
                                             <th>Ngày tạo</th>
@@ -73,12 +73,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      <c:forEach items='${requestScope["listProducts"]}' var='product'>
+                                      <c:forEach items='${requestScope["listOrders"]}' var='order'>
 	                                      <tr>
-	                                         <td>${product.getProductCode()}</td>
-	                                         <td>${product.getProductName()}</td>
-	                                         <td>${product.getPrice()} VNĐ</td>
-	                                         <td>${product.getCreatedOn()}</td>
+	                                         <td>${order.getId()}</td>
+	                                         <td></td>
+	                                         <td></td>
+	                                         <td></td>
 	                                         <td>
 	                                           <button
 	                                             class="btn btn-link shadow-none btn-sm"

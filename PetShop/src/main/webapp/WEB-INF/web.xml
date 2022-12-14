@@ -174,4 +174,44 @@
     <servlet-name>BaseSharedServlet</servlet-name>
     <url-pattern>/BaseSharedServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminEditProduct</display-name>
+    <servlet-name>AdminEditProduct</servlet-name>
+    <servlet-class>com.petshop.servlets.admin.product.AdminEditProduct</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminEditProduct</servlet-name>
+    <url-pattern>/AdminEditProduct</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddProductToCart</display-name>
+    <servlet-name>AddProductToCart</servlet-name>
+    <servlet-class>com.petshop.servlets.shared.cart.AddProductToCart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddProductToCart</servlet-name>
+    <url-pattern>/AddProductToCart</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RemoveProductFromCart</display-name>
+    <servlet-name>RemoveProductFromCart</servlet-name>
+    <servlet-class>com.petshop.servlets.shared.cart.RemoveProductFromCart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveProductFromCart</servlet-name>
+    <url-pattern>/RemoveProductFromCart</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PayServlet</display-name>
+    <servlet-name>PayServlet</servlet-name>
+    <servlet-class>com.petshop.servlets.shared.order.PayServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PayServlet</servlet-name>
+    <url-pattern>/PayServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

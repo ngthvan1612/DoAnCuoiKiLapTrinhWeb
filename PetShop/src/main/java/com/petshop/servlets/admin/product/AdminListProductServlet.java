@@ -20,20 +20,23 @@ import com.petshop.hibernate.entities.Product;
 public class AdminListProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final ProductDAO productDAO;
-       
+	
     public AdminListProductServlet() {
         super();
         this.productDAO = new ProductDAO();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int currentPage = 1, limit = 20;
+		int currentPage = 1, limit = 20, animalId = -1;
 		
 		if (request.getParameter("page") != null)
 			currentPage = Integer.parseInt(request.getParameter("page"));
 		
 		if (request.getParameter("limit") != null)
 			limit = Integer.parseInt(request.getParameter("limit"));
+		
+		if (request.getParameter("animalId") != null)
+			animalId = Integer.parseInt(request.getParameter("animalId"));
 		
 	    List<Product> products = this.productDAO.listProducts(currentPage, limit);
 	    long numberOfProducts = this.productDAO.numberOfProducts();

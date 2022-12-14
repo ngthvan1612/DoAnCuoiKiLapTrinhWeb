@@ -101,6 +101,46 @@ public class ProductImageDAO {
         return productImages.get(0);
 	}
 	
+	public ProductImage getFirstProductImageByProductId(int productId) {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+	    Session session = factory.getCurrentSession();
+	    
+        session.getTransaction().begin();
+        
+        String sql = "select p from " + ProductImage.class.getName() + " p where productId=:productId";
+        Query<ProductImage> query = session.createQuery(sql);
+        query.setParameter("productId", productId);
+        
+        List<ProductImage> productImages = query.list();
+        
+        session.getTransaction().commit();
+        
+        if (productImages.size() == 0)
+        	return null;
+        
+        return productImages.get(0);
+	}
+	
+	public List<ProductImage> listProductImagesByProductId(int productId) {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+	    Session session = factory.getCurrentSession();
+	    
+        session.getTransaction().begin();
+        
+        String sql = "select p from " + ProductImage.class.getName() + " p where productId=:productId";
+        Query<ProductImage> query = session.createQuery(sql);
+        query.setParameter("productId", productId);
+        
+        List<ProductImage> productImages = query.list();
+        
+        session.getTransaction().commit();
+        
+        if (productImages.size() == 0)
+        	return null;
+        
+        return productImages;
+	}
+	
 	public void deleteProductImageById(int productImageId) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 	    Session session = factory.getCurrentSession();

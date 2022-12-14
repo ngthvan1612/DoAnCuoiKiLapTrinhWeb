@@ -6,42 +6,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <div class="product-modal">
-      <div id="modal-container">
+      <div class="modal-container-${param.productId} modal-container" id="modal-container">
         <div class="modal-background">
           <div class="modal">
             <div class="wrapper">
               <section class="columns">
                 <div class="column">
                   <img
-                    src="./phukienpet.vn-image-cache-data-chuongchothucung-chuongchocho-nemchochomeohinhvuong1-min-100x100.png"
+                    src="${param.productImage}"
                   />
                 </div>
 
                 <div class="column">
-                  <h2>Chuồng cho mèo</h2>
-
-                  <p>Gía: 140000</p>
+                  <h2>${param.productName}</h2>
+                  <p>Giá: <span class="vnd">${param.productPrice}</span></p>
                   <p>Mô tả:</p>
                   <div class="product-description">
-                    This HTML scroll box has had color added. You can add color
-                    to the background of your scroll box. You can also add color
-                    to the scroll bars.This HTML scroll box has had color added.
-                    You can add color to the background of your scroll box. You
-                    can also add color to the scroll bars.This HTML scroll box
-                    has had color added. You can add color to the background of
-                    your scroll box. You can also add color to the scroll
-                    bars.This HTML scroll box has had color added. You can add
-                    color to the background of your scroll box. You can also add
-                    color to the scroll bars.This HTML scroll box has had color
-                    added. You can add color to the background of your scroll
-                    box. You can also add color to the scroll bars.This HTML
-                    scroll box has had color added. You can add color to the
-                    background of your scroll box. You can also add color to the
-                    scroll bars.
+                    ${param.description}
                   </div>
-                  <p>Product Code: HEGYWT6D</p>
-
-                  <a href="https://www.google.com/" class="btn continue">Thêm vào giỏ hàng</a>
+                  <p>Mã sản phẩm ${param.productCode}</p>
+                  
+                  <form action="/PetShop/them-vao-gio-hang" method="post">
+                  	<input type="hidden" name="productId" value="${param.productId}">
+                  	<input type="submit" class="btn continue" value="Thêm vào giỏ hàng">
+                  </form>
                 </div>
               </section>
             </div>
@@ -67,20 +55,21 @@
       </div>
       <div class="content">
         <div class="buttons">
-          <div id="six" class="button">Xem sản phẩm</div>
+          <div id="${param.productId}" class="button btn-view-product-${param.productId}">Xem sản phẩm</div>
         </div>
       </div>
     </div>
     <script>
-      $(".button").click(function () {
-        var buttonId = $(this).attr("id");
-        $("#modal-container").removeAttr("class").addClass(buttonId);
-        $("body").addClass("modal-active");
+      $(".btn-view-product-${param.productId}").click(function () {
+	      var buttonId = $(this).attr("id");
+	      var modalContainer = $(".modal-container-${param.productId}");
+          //modalContainer.removeAttr("class");
+          modalContainer.addClass("modal-blabla-active");
+	      $("body").addClass("modal-active");
       });
 
-      $("#modal-container").click(function () {
-        $(this).addClass("out");
-        $("body").removeClass("modal-active");
+      $(".modal-container-${param.productId}").click(function () {
+          $(this).addClass("out");
+          $("body").removeClass("modal-active");
       });
     </script>
-

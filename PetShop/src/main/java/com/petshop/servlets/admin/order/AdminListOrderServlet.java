@@ -43,7 +43,7 @@ public class AdminListOrderServlet extends HttpServlet {
         request.setAttribute("numberOfRowsPerPage", limit);
         request.setAttribute("currentPage", currentPage);
         
-        request.getRequestDispatcher("/WEB-INF/templates/admin/pages/order-management/list-order.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/templates/admin/pages/order-management/list-Orders.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -22,7 +22,9 @@
      <mapping class="com.petshop.hibernate.entities.Animal" />
      <mapping class="com.petshop.hibernate.entities.Category" />
      <mapping class="com.petshop.hibernate.entities.CategoryProduct" />
-
+     <mapping class="com.petshop.hibernate.entities.ProductImage" />
+     <mapping class="com.petshop.hibernate.entities.ProductDescription" />
+     <mapping class="com.petshop.hibernate.entities.Order" />
  </session-factory>
 
 </hibernate-configuration>

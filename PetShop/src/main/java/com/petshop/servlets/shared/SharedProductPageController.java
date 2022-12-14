@@ -12,6 +12,8 @@ import java.util.List;
 import com.petshop.hibernate.daos.AnimalDAO;
 import com.petshop.hibernate.daos.CategoryDAO;
 import com.petshop.hibernate.daos.ProductDAO;
+import com.petshop.hibernate.daos.ProductDescriptionDAO;
+import com.petshop.hibernate.daos.ProductImageDAO;
 import com.petshop.hibernate.entities.*;
 
 @WebServlet("/san-pham")
@@ -19,18 +21,23 @@ public class SharedProductPageController extends BaseSharedServlet {
 	private static final long serialVersionUID = 1L;
 	private final ProductDAO productDAO;
 	private final CategoryDAO categoryDAO;
+	private final ProductImageDAO productImageDAO;
+	private final ProductDescriptionDAO productDescriptionDAO;
 	
     public SharedProductPageController() {
         super();
         
         this.productDAO = new ProductDAO();
         this.categoryDAO = new CategoryDAO();
+        this.productImageDAO = new ProductImageDAO();
+        this.productDescriptionDAO = new ProductDescriptionDAO();
     }
     
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		List<Product> products = null;
+		List<ProductView> listProductViews = new ArrayList<>();;
 		
 		if (request.getParameter("categoryId") != null) {
 			int categoryId = Integer.parseInt(request.getParameter("categoryId"));
@@ -42,9 +49,24 @@ public class SharedProductPageController extends BaseSharedServlet {
 			products = this.productDAO.listProducts(1, 20);
 		}
 		
+		for (var product: products) {
+			ProductView productView = new ProductView();
+			
+			productView.setName(product.getProductName());
+			productView.setId(product.getId());
+			productView.setPrice(product.getPrice());
+			productView.setCode(product.getProductCode());
+			
+			ProductImage productImage = this.productImageDAO.getFirstProductImageByProductId(product.getId());
+			productView.setImageLink(productImage.getProductImageLink());
+			
+			List<ProductDescription> descriptions = this.productDescriptionDAO.listProductDescriptionsByProductId(product.getId());
+			productView.setListProductDescriptions(descriptions);
+			
+			listProductViews.add(productView);
+		}
 		
-		
-		request.setAttribute("listProducts", products);
+		request.setAttribute("listProducts", listProductViews);
 		request.getRequestDispatcher("/WEB-INF/templates/shared/product.jsp").forward(request, response);
 	}
     

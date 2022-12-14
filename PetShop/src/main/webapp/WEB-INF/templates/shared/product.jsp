@@ -23,13 +23,38 @@
             </div>
             <div class="row">
               <c:forEach items='${listProducts}' var='product'>
-              <div class="col-3">
-		            <div class="pb-5">
-		                <div class="product-item bg-light text-center">
-		                    <img class="img-fluid mb-4" src="/PetShop/static/img/product-1.png" alt="">
-		                    <h6 class="text-uppercase">${product.getProductName()}</h6>
-		                    <h5 class="text-primary mb-0 vnd">${product.getPrice()}</h5>
-    						<c:import url="/WEB-INF/templates/shared/components/productmodal.jsp"/>
+              <div class="col-3" style="height: 100%; max-height: 100%;">
+		            <div class="pb-5" style="height: 100%; max-height: 100%;">
+		                <div class="product-item bg-light text-center" style="min-height: 450px;">
+		                	<div class="container">
+			                    <img class="img-fluid mb-4" src="${product.getImageLink()}" alt=""
+			                    	style="max-width: 100%; height: 200px;">
+			                    <h6 class="text-uppercase">${product.getName()}</h6>
+			                    <h5 class="text-primary mb-0 vnd">${product.getPrice()}</h5>
+		                    </div>
+		                    <div class="footer" style="margin-bottom: 0px;">
+		                    	<c:import url="/WEB-INF/templates/shared/components/productmodal.jsp">
+		                    		<c:param name="productId" value="${product.id}"/>
+		                    		<c:param name="productName" value="${product.name}"/>
+		                    		<c:param name="productPrice" value="${product.price}"/>
+		                    		<c:param name="productImage" value="${product.imageLink}"/>
+		                    		<c:param name="description">
+		                    			<c:forEach items="${product.listProductDescriptions}" var='des'>
+		                    				<c:choose>
+		                    					<c:when test='${des.type == "text"}'>
+		                    						<p>${des.content}</p>
+		                    					</c:when>
+		                    					<c:when test='${des.type == "heading"}'>
+		                    						<h2>${des.content}</h2>
+		                    					</c:when>
+		                    					<c:when test='${des.type == "href"}'>
+		                    						<img src="${des.content}"/>
+		                    					</c:when>
+		                    				</c:choose>
+		                    			</c:forEach>
+		                    		</c:param>
+		                    	</c:import>
+		                    </div>
 		                </div>
 		            </div>
 	            </div>
@@ -44,8 +69,6 @@
   for (const vnd of vnds) {
 	  vnd.textContent = vndFormat(parseInt(vnd.textContent));
   }
-  
-  
   </script>
 </body>
 </html>

@@ -80,12 +80,20 @@
 	                                         <td>${product.getPrice()} VNĐ</td>
 	                                         <td>${product.getCreatedOn()}</td>
 	                                         <td>
+	                                         	<a
+	                                         		href="/PetShop/admin/product-management/edit?productId=${product.getId()}"
+	                                         		class="btn btn-link shadow-none btn-sm"
+	                                         	>
+	                                         		Xem
+	                                         	</a>
 	                                           <button
+	                                           	 style="display:none;"
 	                                             class="btn btn-link shadow-none btn-sm"
 	                                             onclick="onEditRowClick(${product.getId()}, '${product.getProductCode()}', '${product.getProductName()}', ${product.getPrice()})"
 	                                             data-toggle="modal" data-target="#modalUpdateProduct"
 	                                           >Sửa</button>
 	                                           <button
+	                                           	 style="display:none;"
 	                                             class="btn btn-danger shadow-none btn-sm"
 	                                             onclick="onDeleteRowClick(${product.getId()})"
 	                                             data-toggle="modal" data-target="#modalDeleteProduct"
@@ -109,29 +117,29 @@
                                       <a class="page-link" href="/PetShop/admin/product-management?page=${currentPage - 1}&limit=${numberOfRowsPerPage}">Trang trước</a>
                                     </c:otherwise>
                                   </c:choose>
-														    </li>
-														    <c:forEach begin="1" end="${(pageSize + numberOfRowsPerPage - 1) / numberOfRowsPerPage}" var='pageId'>
-														      <c:choose>
-														        <c:when test='${pageId == currentPage}'>
-														          <li class="page-item active"><a class="page-link" href="/PetShop/admin/product-management?page=${pageId}&limit=${numberOfRowsPerPage}">${pageId}</a></li>														          
-														        </c:when>
-														        <c:otherwise>
-														          <li class="page-item"><a class="page-link" href="/PetShop/admin/product-management?page=${pageId}&limit=${numberOfRowsPerPage}">${pageId}</a></li>
-														        </c:otherwise>
-														      </c:choose>
-														    </c:forEach>
-														    <li class="page-item">
-														      <c:choose>
-														        <c:when test='${currentPage >= (pageSize + numberOfRowsPerPage - 1) / numberOfRowsPerPage - 1}'>
-														          <a class="page-link" aria-disabled="true">Trang sau</a>
-														        </c:when>
-														        <c:otherwise>
-														          <a class="page-link" href="/PetShop/admin/product-management?page=${currentPage + 1}&limit=${numberOfRowsPerPage}">Trang sau</a>
-														        </c:otherwise>
-														      </c:choose>
-														    </li>
-														  </ul>
-														</nav>
+								    </li>
+								    <c:forEach begin="1" end="${(pageSize + numberOfRowsPerPage - 1) / numberOfRowsPerPage}" var='pageId'>
+								      <c:choose>
+								        <c:when test='${pageId == currentPage}'>
+								          <li class="page-item active"><a class="page-link" href="/PetShop/admin/product-management?page=${pageId}&limit=${numberOfRowsPerPage}">${pageId}</a></li>														          
+								        </c:when>
+								        <c:otherwise>
+								          <li class="page-item"><a class="page-link" href="/PetShop/admin/product-management?page=${pageId}&limit=${numberOfRowsPerPage}">${pageId}</a></li>
+								        </c:otherwise>
+								      </c:choose>
+								    </c:forEach>
+								    <li class="page-item">
+								      <c:choose>
+								        <c:when test='${currentPage >= (pageSize + numberOfRowsPerPage - 1) / numberOfRowsPerPage - 1}'>
+								          <a class="page-link" aria-disabled="true">Trang sau</a>
+								        </c:when>
+								        <c:otherwise>
+								          <a class="page-link" href="/PetShop/admin/product-management?page=${currentPage + 1}&limit=${numberOfRowsPerPage}">Trang sau</a>
+								        </c:otherwise>
+								      </c:choose>
+								    </li>
+								  </ul>
+								</nav>
                         </div>
                     </div>
 

@@ -35,7 +35,7 @@ public class CategoryProductDAO {
 	    
 	    CategoryProduct entity = (CategoryProduct)session.get(CategoryProduct.class, categoryProduct.getId());
 
-      entity.setAnimalId(categoryProduct.getAnimalId());
+      entity.setCategoryId(categoryProduct.getCategoryId());
       entity.setProductId(categoryProduct.getProductId());
       	    
 	    session.update(entity);
@@ -74,6 +74,22 @@ public class CategoryProductDAO {
         	query.setMaxResults(limit);
         }
         
+        List<CategoryProduct> categoryProducts = query.list();
+        
+        session.getTransaction().commit();
+        return categoryProducts;
+	}
+	
+	public List<CategoryProduct> listCategoryProductByProductId(int productId) {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+	    Session session = factory.getCurrentSession();
+	    
+        session.getTransaction().begin();
+        
+        String sql = "select p from " + CategoryProduct.class.getName() + " p where p.deletedOn = null and p.productId=:productId";
+        Query<CategoryProduct> query = session.createQuery(sql);
+        
+        query.setParameter("productId", productId);
         List<CategoryProduct> categoryProducts = query.list();
         
         session.getTransaction().commit();

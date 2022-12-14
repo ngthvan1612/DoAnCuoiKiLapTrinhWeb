@@ -50,71 +50,10 @@
                 </div>
             </li>
             
-            <div class="sidebar-heading">
-                Sản phẩm
-            </div>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#productCollapse-dog"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Sản phẩm cho chó</span>
-                </a>
-                <div id="productCollapse-dog" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#productCollapse-cat"
-                    aria-expanded="true" aria-controls="productCollapse-dog">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Sản phẩm cho mèo</span>
-                </a>
-                <div id="productCollapse-cat" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#productCollapse-hamster"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Sản phẩm cho chuột</span>
-                </a>
-                <div id="productCollapse-hamster" class="collapse" aria-labelledby="headingUtilities">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#productCollapse-bird"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Sản phẩm cho chim</span>
-                </a>
-                <div id="productCollapse-bird" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
+            <li class="nav-item active">
+                <a class="nav-link" href="/PetShop/admin/product-management">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Sản phẩm</span></a>
             </li>
 
             <div class="sidebar-heading">
@@ -122,22 +61,10 @@
             </div>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#orderingCollapse"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Tất cả đơn hàng</span>
-                </a>
-                <div id="orderingCollapse" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
+            <li class="nav-item active">
+                <a class="nav-link" href="/PetShop/admin/order-management">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Tất cả đơn hàng</span></a>
             </li>
             
             <div class="sidebar-heading">
