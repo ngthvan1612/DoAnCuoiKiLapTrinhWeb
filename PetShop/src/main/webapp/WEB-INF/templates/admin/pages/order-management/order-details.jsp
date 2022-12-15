@@ -99,6 +99,13 @@
                             		<form class="card" method="post" action="/PetShop/admin/order-management/update-delivered-at">
                             			<input type="hidden" value="${order.getId()}" name="orderId">
                             			<div class="card-body">
+                            			<div>
+		                            			<p>Họ tên: ${order.getFullName()}</p>
+		                            			<p>Số điện thoại: ${order.getPhoneNumber()}</p>
+		                            			<p>Địa chỉ: ${order.getAddress()}</p>
+		                            			<p>Ghi chú: ${order.getNote()}</p>
+                            			
+                            			</div>
 	                            			<div class="form-check">
 		                            			<div class="input-group mb-3">
 												  <span class="input-group-text" id="basic-addon1">Ngày giao hàng</span>

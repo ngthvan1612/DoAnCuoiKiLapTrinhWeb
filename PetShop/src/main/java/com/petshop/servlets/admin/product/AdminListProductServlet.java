@@ -55,7 +55,7 @@ public class AdminListProductServlet extends HttpServlet {
         request.setAttribute("numberOfRowsPerPage", limit);
         request.setAttribute("currentPage", currentPage);
         
-        request.getRequestDispatcher("/WEB-INF/templates/admin/pages/product-management/list-Products.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/templates/admin/pages/product-management/list-products.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
