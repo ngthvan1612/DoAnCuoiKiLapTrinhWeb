@@ -17,3 +17,11 @@
     <!-- Page level custom scripts -->
     <script src="/PetShop/static/admin/js/demo/chart-area-demo.js"></script>
     <script src="/PetShop/static/admin/js/demo/chart-pie-demo.js"></script>
+    
+    <script>
+    const vndFormat = (x) => x.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+    const vnds = document.getElementsByClassName('vnd');
+    for (const vnd of vnds) {
+  	  vnd.textContent = vndFormat(parseInt(vnd.textContent));
+    }
+    </script>

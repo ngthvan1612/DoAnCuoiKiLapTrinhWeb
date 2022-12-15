@@ -214,4 +214,34 @@
     <servlet-name>PayServlet</servlet-name>
     <url-pattern>/PayServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminOrderDetail</display-name>
+    <servlet-name>AdminOrderDetail</servlet-name>
+    <servlet-class>com.petshop.servlets.admin.order.AdminOrderDetail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminOrderDetail</servlet-name>
+    <url-pattern>/AdminOrderDetail</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateOrderStatusServlet</display-name>
+    <servlet-name>UpdateOrderStatusServlet</servlet-name>
+    <servlet-class>com.petshop.servlets.admin.order.UpdateOrderStatusServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateOrderStatusServlet</servlet-name>
+    <url-pattern>/UpdateOrderStatusServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateOrderDeliveredAtServlet</display-name>
+    <servlet-name>UpdateOrderDeliveredAtServlet</servlet-name>
+    <servlet-class>com.petshop.servlets.admin.order.UpdateOrderDeliveredAtServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateOrderDeliveredAtServlet</servlet-name>
+    <url-pattern>/UpdateOrderDeliveredAtServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

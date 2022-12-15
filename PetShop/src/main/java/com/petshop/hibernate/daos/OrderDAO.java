@@ -18,13 +18,15 @@ public class OrderDAO {
 	
 	public Order createOrder(Order order) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
-    Session session = factory.getCurrentSession();
-    session.getTransaction().begin();
-    
-    session.persist(order);
-    session.flush();
-      
-    session.getTransaction().commit();
+	    Session session = factory.getCurrentSession();
+	    session.getTransaction().begin();
+	    
+	    order.setCreatedOn(new Date(System.currentTimeMillis()));
+	    int lastId = (int)session.save(order);
+	    session.flush();
+	    
+	    order.setId(lastId);
+	    session.getTransaction().commit();
 		return order;
 	}
 	
@@ -35,14 +37,44 @@ public class OrderDAO {
 	    
 	    Order entity = (Order)session.get(Order.class, order.getId());
 
-      entity.setDeliveredAt(order.getDeliveredAt());
-      entity.setUserId(order.getUserId());
+	    entity.setDeliveredAt(order.getDeliveredAt());
+	    entity.setUserId(order.getUserId());
       	    
 	    session.update(entity);
 	    
 	    session.flush();
-      session.getTransaction().commit();
-      return entity;
+	    session.getTransaction().commit();
+	    return entity;
+	}
+	
+	public void updateStatus(int orderId, String status) {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+	    Session session = factory.getCurrentSession();
+	    session.getTransaction().begin();
+	    
+	    Order entity = (Order)session.get(Order.class, orderId);
+
+	    entity.setStatus(status);
+      	    
+	    session.update(entity);
+	    
+	    session.flush();
+	    session.getTransaction().commit();
+	}
+	
+	public void updateDeliveredAt(int orderId, Date deliveredAt) {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+	    Session session = factory.getCurrentSession();
+	    session.getTransaction().begin();
+	    
+	    Order entity = (Order)session.get(Order.class, orderId);
+
+	    entity.setDeliveredAt(deliveredAt);
+      	    
+	    session.update(entity);
+	    
+	    session.flush();
+	    session.getTransaction().commit();		
 	}
 	
 	public long numberOfOrders() {

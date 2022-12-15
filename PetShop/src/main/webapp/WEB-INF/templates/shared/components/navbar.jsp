@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="com.petshop.servlets.shared.*" %>
 
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0">
@@ -26,9 +28,21 @@
                 </div>
             </div>
         </c:forEach>	
-        
-           
-            <a href="/PetShop/gio-hang" class="nav-item nav-link">Giỏ hàng</a>
+            <a href="/PetShop/gio-hang" class="nav-item nav-link">
+            	Giỏ hàng<%
+            		List<CartItem> cartItems = (List<CartItem>)(request.getAttribute("cartItems"));
+            		if (cartItems == null)
+            			cartItems = new ArrayList<>();
+            		int totalProducts = 0;
+            		for (CartItem cartItem : cartItems) {
+            			totalProducts += cartItem.getNum();
+            		}
+            		if (totalProducts > 0) {%>
+            			(<%= totalProducts %>)
+            		<%
+            		}
+            	%>
+            </a>
             <a href="/PetShop/ve-chung-toi" class="nav-item nav-link">Liên hệ</a>
             <c:choose>
               <c:when test='${requestScope["isAuthenticated"] == true}'>
