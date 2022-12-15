@@ -15,19 +15,19 @@
     <div id="wrapper">
         <c:import url="/WEB-INF/templates/admin/_layout/sidebar.jsp"/>
         
-        <c:import url="/WEB-INF/templates/admin/pages/product-management/create-product-modal.jsp">
+        <c:import url="/WEB-INF/templates/admin/pages/product-management/create-Product-modal.jsp">
           <c:param name="modalId" value="modalCreateProduct" />
           <c:param name="formName" value="formCreateProduct"/>
           <c:param name="targetUrl" value="/PetShop/admin/product-management/create"/>
         </c:import>
         
-        <c:import url="/WEB-INF/templates/admin/pages/product-management/update-product-modal.jsp">
+        <c:import url="/WEB-INF/templates/admin/pages/product-management/update-Product-modal.jsp">
           <c:param name="modalId" value="modalUpdateProduct" />
           <c:param name="formName" value="formUpdateProduct"/>
           <c:param name="targetUrl" value="/PetShop/admin/product-management/update"/>
         </c:import>
         
-        <c:import url="/WEB-INF/templates/admin/pages/product-management/delete-product-modal.jsp">
+        <c:import url="/WEB-INF/templates/admin/pages/product-management/delete-Product-modal.jsp">
           <c:param name="modalId" value="modalDeleteProduct" />
           <c:param name="formName" value="formDeleteProduct"/>
           <c:param name="targetUrl" value="/PetShop/admin/product-management/delete"/>
@@ -44,7 +44,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Sản phẩm đang kinh doanh</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Loại sản phẩm đang kinh doanh</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -52,12 +52,7 @@
                             <div class="mb-4">
                               <div class="row">
                                 <div class="col">
-                                  <button
-                                    class="btn btn-primary"
-                                    data-toggle="modal" data-target="#modalCreateProduct"
-                                  >
-                                    Thêm
-                                  </button>
+                                  
                                 </div>
                               </div>
                             </div>
@@ -65,35 +60,22 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Mã sản phẩm</th>
-                                            <th>Tên sản phẩm</th>
-                                            <th>Giá</th>
+                                            <th>Tên loại sản phẩm</th>
                                             <th>Ngày tạo</th>
-                                            <th></th>
+                                            <th>Thú cưng</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      <c:forEach items='${requestScope["listProducts"]}' var='product'>
-	                                      <tr>
-	                                         <td>${product.getProductCode()}</td>
-	                                         <td>${product.getProductName()}</td>
-	                                         <td>${product.getPrice()} VNĐ</td>
-	                                         <td>${product.getCreatedOn()}</td>
-	                                         <td>
-	                                           <button
-	                                             class="btn btn-link shadow-none btn-sm"
-	                                             onclick="onEditRowClick(${product.getId()}, '${product.getProductCode()}', '${product.getProductName()}', ${product.getPrice()})"
-	                                             data-toggle="modal" data-target="#modalUpdateProduct"
-	                                           >Sửa</button>
-	                                           <button
-	                                             class="btn btn-danger shadow-none btn-sm"
-	                                             onclick="onDeleteRowClick(${product.getId()})"
-	                                             data-toggle="modal" data-target="#modalDeleteProduct"
-	                                           >
-	                                             Xóa
-	                                           </button>
-	                                         </td>
-	                                      </tr>
+                                      <c:forEach items='${requestScope["listAnimals"]}' var='animal'>
+	                                      <c:forEach items='${requestScope["listCategorys"]}' var='category'>
+	                                       <c:if test="${animal.getId() == category.getAnimalId()}">
+			                                      <tr>
+			                                         <td>${category.getCategoryName()}</td>
+			                                         <td>${category.getCreatedOn()}</td>
+			                                         <td>${animal.getAnimalName()}</td>
+			                                      </tr>
+		                                      </c:if>
+	                                      </c:forEach>
                                       </c:forEach>
                                     </tbody>
                                 </table>

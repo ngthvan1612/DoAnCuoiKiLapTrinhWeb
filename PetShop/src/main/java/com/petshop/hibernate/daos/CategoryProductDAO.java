@@ -21,6 +21,7 @@ public class CategoryProductDAO {
     Session session = factory.getCurrentSession();
     session.getTransaction().begin();
     
+    categoryProduct.setCreatedOn(new Date(System.currentTimeMillis()));
     session.persist(categoryProduct);
     session.flush();
       
@@ -105,6 +106,27 @@ public class CategoryProductDAO {
         String sql = "select p from " + CategoryProduct.class.getName() + " p where id=:categoryProductId";
         Query<CategoryProduct> query = session.createQuery(sql);
         query.setParameter("categoryProductId", categoryProductId);
+        
+        List<CategoryProduct> categoryProducts = query.list();
+        
+        session.getTransaction().commit();
+        
+        if (categoryProducts.size() == 0)
+        	return null;
+        
+        return categoryProducts.get(0);
+	}
+	
+	public CategoryProduct getCategoryProductByProductIdAndCategoryId(int productId, int categoryId) {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+	    Session session = factory.getCurrentSession();
+	    
+        session.getTransaction().begin();
+        
+        String sql = "select p from " + CategoryProduct.class.getName() + " p where p.productId=:productId and p.categoryId=:categoryId";
+        Query<CategoryProduct> query = session.createQuery(sql);
+        query.setParameter("productId", productId);
+        query.setParameter("categoryId", categoryId);
         
         List<CategoryProduct> categoryProducts = query.list();
         

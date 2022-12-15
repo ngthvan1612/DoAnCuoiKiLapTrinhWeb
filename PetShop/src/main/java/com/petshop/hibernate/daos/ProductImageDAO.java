@@ -20,7 +20,8 @@ public class ProductImageDAO {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
     Session session = factory.getCurrentSession();
     session.getTransaction().begin();
-    
+
+    productImage.setCreatedOn(new Date(System.currentTimeMillis()));
     session.persist(productImage);
     session.flush();
       
@@ -127,7 +128,7 @@ public class ProductImageDAO {
 	    
         session.getTransaction().begin();
         
-        String sql = "select p from " + ProductImage.class.getName() + " p where productId=:productId";
+        String sql = "select p from " + ProductImage.class.getName() + " p where productId=:productId and p.deletedOn = null order by p.order";
         Query<ProductImage> query = session.createQuery(sql);
         query.setParameter("productId", productId);
         

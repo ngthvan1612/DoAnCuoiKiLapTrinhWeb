@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -37,17 +39,20 @@ public class AdminCreateCategoryProductServlet extends HttpServlet {
 		
 		
 		
-		//categoryProduct.setAnimalId(Integer.parseInt(request.getParameter("animalId")));
+		//categoryProduct.setProductId(Integer.parseInt(request.getParameter("productId")));
+		int productId = (Integer.parseInt(request.getParameter("productId")));
 		
-		
-		
-		categoryProduct.setProductId(Integer.parseInt(request.getParameter("productId")));
-		
-		
+		int categoryId = (Integer.parseInt(request.getParameter("categorys-add")));
+				
+		categoryProduct.setProductId(productId);
+		System.out.println(categoryProduct.getProductId());
+		categoryProduct.setCategoryId(categoryId);
+		System.out.println(categoryProduct.getCategoryId());
 		
 		this.categoryProductDAO.createCategoryProduct(categoryProduct);
 		
 		request.setAttribute("success_messages", new String[] { "Tạo CategoryProduct thành công" });
-		response.sendRedirect("/PetShop/admin/categoryProduct-management?page=1&limit=50");
+		response.sendRedirect("/PetShop/admin/product-management/edit?productId="+productId);
+		
 	}
 }
