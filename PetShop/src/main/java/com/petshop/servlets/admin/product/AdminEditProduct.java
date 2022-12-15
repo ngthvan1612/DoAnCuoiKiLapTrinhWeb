@@ -70,7 +70,6 @@ public class AdminEditProduct extends HttpServlet {
 	protected void doPost(HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
 		response.setStatus(405);
 		//doGet(request, response);
-		
 	}
 
 }

@@ -243,12 +243,5 @@
   <servlet-mapping>
     <servlet-name>UpdateOrderDeliveredAtServlet</servlet-name>
     <url-pattern>/UpdateOrderDeliveredAtServlet</url-pattern>
-    <display-name>AdminEditCategoryServlet</display-name>
-    <servlet-name>AdminEditCategoryServlet</servlet-name>
-    <servlet-class>com.petshop.servlets.admin.category.AdminEditCategoryServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminEditCategoryServlet</servlet-name>
-    <url-pattern>/AdminEditCategoryServlet</url-pattern>
   </servlet-mapping>
 </web-app>

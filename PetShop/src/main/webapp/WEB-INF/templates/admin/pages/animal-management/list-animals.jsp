@@ -15,19 +15,19 @@
     <div id="wrapper">
         <c:import url="/WEB-INF/templates/admin/_layout/sidebar.jsp"/>
         
-        <c:import url="/WEB-INF/templates/admin/pages/product-management/create-Product-modal.jsp">
+        <c:import url="/WEB-INF/templates/admin/pages/product-management/create-product-modal.jsp">
           <c:param name="modalId" value="modalCreateProduct" />
           <c:param name="formName" value="formCreateProduct"/>
           <c:param name="targetUrl" value="/PetShop/admin/product-management/create"/>
         </c:import>
         
-        <c:import url="/WEB-INF/templates/admin/pages/product-management/update-Product-modal.jsp">
+        <c:import url="/WEB-INF/templates/admin/pages/product-management/update-product-modal.jsp">
           <c:param name="modalId" value="modalUpdateProduct" />
           <c:param name="formName" value="formUpdateProduct"/>
           <c:param name="targetUrl" value="/PetShop/admin/product-management/update"/>
         </c:import>
         
-        <c:import url="/WEB-INF/templates/admin/pages/product-management/delete-Product-modal.jsp">
+        <c:import url="/WEB-INF/templates/admin/pages/product-management/delete-product-modal.jsp">
           <c:param name="modalId" value="modalDeleteProduct" />
           <c:param name="formName" value="formDeleteProduct"/>
           <c:param name="targetUrl" value="/PetShop/admin/product-management/delete"/>
@@ -52,7 +52,12 @@
                             <div class="mb-4">
                               <div class="row">
                                 <div class="col">
-                                  
+                                  <button
+                                    class="btn btn-primary"
+                                    data-toggle="modal" data-target="#modalCreateProduct"
+                                  >
+                                    Thêm
+                                  </button>
                                 </div>
                               </div>
                             </div>
@@ -63,6 +68,7 @@
                                             <th>Animal Id</th>
                                             <th>Animal name</th>
                                             <th>Ngày tạo</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -71,6 +77,20 @@
 	                                         <td>${animal.getId()}</td>
 	                                         <td>${animal.getAnimalName()}</td>
 	                                         <td>${animal.getCreatedOn()}</td>
+	                                         <td>
+	                                           <button
+	                                             class="btn btn-link shadow-none btn-sm"
+	                                             onclick="onEditRowClick(${product.getId()}, '${product.getProductCode()}', '${product.getProductName()}', ${product.getPrice()})"
+	                                             data-toggle="modal" data-target="#modalUpdateProduct"
+	                                           >Sửa</button>
+	                                           <button
+	                                             class="btn btn-danger shadow-none btn-sm"
+	                                             onclick="onDeleteRowClick(${product.getId()})"
+	                                             data-toggle="modal" data-target="#modalDeleteProduct"
+	                                           >
+	                                             Xóa
+	                                           </button>
+	                                         </td>
 	                                      </tr>
                                       </c:forEach>
                                     </tbody>

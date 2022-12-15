@@ -34,20 +34,24 @@ public class AdminUpdateProductServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Product product = new Product();
-		
-		int productId = Integer.parseInt(request.getParameter("productId"));
-		String productCode = request.getParameter("productCode");
-		String productName = request.getParameter("productName");
-		int productPrice = Integer.parseInt(request.getParameter("productPrice"));
 
-		product.setId(productId);
-		product.setProductName(productName);
-		product.setPrice(productPrice);
-		product.setProductCode(productCode);
+		product.setId(Integer.parseInt(request.getParameter("id")));
+		
+		
+		product.setProductName(request.getParameter("productName"));
+		
+		
+		
+		product.setPrice(Integer.parseInt(request.getParameter("price")));
+		
+		
+		
+		product.setProductCode(request.getParameter("productCode"));
+		
 		
 		this.productDAO.updateProduct(product);
 
 		request.setAttribute("success_messages", new String[] { "Cập nhật sản phẩm thành công" });
-		response.sendRedirect("/PetShop/admin/product-management/edit?productId="+productId);
+		response.sendRedirect("/PetShop/admin/product-management?page=1&limit=50");
 	}
 }

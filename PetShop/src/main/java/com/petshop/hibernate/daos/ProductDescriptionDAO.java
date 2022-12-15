@@ -20,8 +20,7 @@ public class ProductDescriptionDAO {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
     Session session = factory.getCurrentSession();
     session.getTransaction().begin();
-
-    productDescription.setCreatedOn(new Date(System.currentTimeMillis()));
+    
     session.persist(productDescription);
     session.flush();
       
@@ -69,7 +68,7 @@ public class ProductDescriptionDAO {
 	    
         session.getTransaction().begin();
         
-        String sql = "select p from " + ProductDescription.class.getName() + " p where p.deletedOn = null orderby p.order";
+        String sql = "select p from " + ProductDescription.class.getName() + " p where p.deletedOn = null";
         Query<ProductDescription> query = session.createQuery(sql);
         
         if ((page - 1) * limit >= 0) {
@@ -89,7 +88,7 @@ public class ProductDescriptionDAO {
 	    
         session.getTransaction().begin();
         
-        String sql = "select p from " + ProductDescription.class.getName() + " p where p.deletedOn = null and p.productId=:productId order by p.order";
+        String sql = "select p from " + ProductDescription.class.getName() + " p where p.deletedOn = null and p.productId=:productId";
         Query<ProductDescription> query = session.createQuery(sql);
         
         query.setParameter("productId", productId);
