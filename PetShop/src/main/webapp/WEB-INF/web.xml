@@ -214,4 +214,14 @@
     <servlet-name>PayServlet</servlet-name>
     <url-pattern>/PayServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminEditCategoryServlet</display-name>
+    <servlet-name>AdminEditCategoryServlet</servlet-name>
+    <servlet-class>com.petshop.servlets.admin.category.AdminEditCategoryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminEditCategoryServlet</servlet-name>
+    <url-pattern>/AdminEditCategoryServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
