@@ -33,16 +33,16 @@ public class AdminDeleteProductImageServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("id"));
-		int productImageId = Integer.parseInt(request.getParameter("id"));
+		int productId = Integer.parseInt(request.getParameter("productId"));
+		int productImageId = Integer.parseInt(request.getParameter("productImageId"));
 		
 		this.productImageDAO.deleteProductImageById(productImageId);
 		
         request.setAttribute("success_messages", new String[] { "Tạo hình ảnh sản phẩm thành công" });
         
-        RequestDispatcher rd = request.getRequestDispatcher("/admin/productImage-management");
-        rd.include(request, response);
+        //RequestDispatcher rd = request.getRequestDispatcher("/admin/productImage-management");
+        //rd.include(request, response);
         
-		response.sendRedirect("/PetShop/admin/productImage-management");
+		response.sendRedirect("/PetShop/admin/product-management/edit?productId="+productId);
 	}
 }
