@@ -51,12 +51,6 @@
             </li>
             
             <li class="nav-item active">
-                <a class="nav-link" href="/PetShop/admin/category-management">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Loại sản phẩm</span></a>
-            </li>
-            
-            <li class="nav-item active">
                 <a class="nav-link" href="/PetShop/admin/product-management">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Sản phẩm</span></a>

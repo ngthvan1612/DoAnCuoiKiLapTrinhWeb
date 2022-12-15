@@ -64,23 +64,7 @@ public class ProductDAO {
         return result;
 	}
 	
-	public long numberOfProductByProductName(String productName) {
-		SessionFactory factory = HibernateUtils.getSessionFactory();
-	    Session session = factory.getCurrentSession();
-	    
-        session.getTransaction().begin();
-        
-        String sql = "select count(*) from " + Product.class.getName() + " p where p.deletedOn = null and p.productName like :productName";
-        Query query = session.createQuery(sql);
-        query.setParameter("productName","%" + productName + "%");
-        
-        long result = (long)query.uniqueResult();
-        
-        session.getTransaction().commit();
-        return result;
-	}
-	
-	public List<Product> listProductsByCategoryId(int categoryId) {
+	public List<Product> listProductsByCategoryId(int categoryId, int page, int limit) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 	    Session session = factory.getCurrentSession();
 	    
@@ -91,22 +75,6 @@ public class ProductDAO {
         
         query.setParameter("categoryId", categoryId);
         
-        List<Product> products = query.list();
-        
-        session.getTransaction().commit();
-        return products;
-	}
-	
-	public List<Product> listProductByProductName(String productName, int page, int limit) {
-		SessionFactory factory = HibernateUtils.getSessionFactory();
-	    Session session = factory.getCurrentSession();
-	    
-        session.getTransaction().begin();
-        
-        String sql = "select p from " + Product.class.getName() + " p where p.deletedOn = null and p.productName like :productName";
-        Query<Product> query = session.createQuery(sql);
-        query.setParameter("productName","%" + productName + "%");
-        		
         if ((page - 1) * limit >= 0) {
         	query.setFirstResult((page - 1) * limit);
         	query.setMaxResults(limit);
@@ -131,21 +99,6 @@ public class ProductDAO {
         	query.setFirstResult((page - 1) * limit);
         	query.setMaxResults(limit);
         }
-        
-        List<Product> products = query.list();
-        
-        session.getTransaction().commit();
-        return products;
-	}
-	
-	public List<Product> listAllProducts() {
-		SessionFactory factory = HibernateUtils.getSessionFactory();
-	    Session session = factory.getCurrentSession();
-	    
-        session.getTransaction().begin();
-        
-        String sql = "select p from " + Product.class.getName() + " p where p.deletedOn = null";
-        Query<Product> query = session.createQuery(sql);
         
         List<Product> products = query.list();
         

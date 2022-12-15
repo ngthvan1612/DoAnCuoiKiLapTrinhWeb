@@ -35,19 +35,27 @@ public class AdminCreateProductDescriptionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProductDescription productDescription = new ProductDescription();
 		
-		int productId = Integer.parseInt(request.getParameter("productId"));
-		String productDesType = request.getParameter("descriptionType");
-		String productDesContent = request.getParameter("descriptionContent");
-		int productDesOrder = Integer.parseInt(request.getParameter("descriptionOrder"));
 		
-		productDescription.setType(productDesType);
-		productDescription.setOrder(productDesOrder);
-		productDescription.setContent(productDesContent);
-		productDescription.setProductId(productId);
+		
+		productDescription.setType(request.getParameter("type"));
+		
+		
+		
+		productDescription.setOrder(Integer.parseInt(request.getParameter("order")));
+		
+		
+		
+		productDescription.setContent(request.getParameter("content"));
+		
+		
+		
+		productDescription.setProductId(Integer.parseInt(request.getParameter("productId")));
+		
+		
 		
 		this.productDescriptionDAO.createProductDescription(productDescription);
 		
 		request.setAttribute("success_messages", new String[] { "Tạo thông tin sản phẩm thành công" });
-		response.sendRedirect("/PetShop/admin/product-management/edit?productId="+productId);
+		response.sendRedirect("/PetShop/admin/productDescription-management?page=1&limit=50");
 	}
 }

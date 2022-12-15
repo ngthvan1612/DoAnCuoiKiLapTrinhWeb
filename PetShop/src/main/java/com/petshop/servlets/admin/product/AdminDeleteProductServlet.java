@@ -33,15 +33,15 @@ public class AdminDeleteProductServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("productId"));
-		int productId = Integer.parseInt(request.getParameter("productId"));
+		System.out.println(request.getParameter("id"));
+		int productId = Integer.parseInt(request.getParameter("id"));
 		
 		this.productDAO.deleteProductById(productId);
 		
         request.setAttribute("success_messages", new String[] { "Tạo sản phẩm thành công" });
         
-        //RequestDispatcher rd = request.getRequestDispatcher("/admin/product-management");
-        //rd.include(request, response);
+        RequestDispatcher rd = request.getRequestDispatcher("/admin/product-management");
+        rd.include(request, response);
         
 		response.sendRedirect("/PetShop/admin/product-management");
 	}

@@ -46,8 +46,6 @@ public class AdminCreateCategoryServlet extends HttpServlet {
 		
 		
 		this.categoryDAO.createCategory(category);
-
-		
 		
 		request.setAttribute("success_messages", new String[] { "Tạo loại sản phẩm thành công" });
 		response.sendRedirect("/PetShop/admin/category-management?page=1&limit=50");

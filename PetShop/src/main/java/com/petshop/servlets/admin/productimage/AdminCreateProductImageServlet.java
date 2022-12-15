@@ -35,17 +35,23 @@ public class AdminCreateProductImageServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProductImage productImage = new ProductImage();
 		
-		int productId = Integer.parseInt(request.getParameter("productId"));
-		String productImageLink = request.getParameter("imageLink");
-		int productImageOrder = Integer.parseInt(request.getParameter("imageOrder"));
 		
-		productImage.setOrder(productImageOrder);
-		productImage.setProductImageLink(productImageLink);
-		productImage.setProductId(productId);
+		
+		productImage.setOrder(Integer.parseInt(request.getParameter("order")));
+		
+		
+		
+		productImage.setProductImageLink(request.getParameter("productImageLink"));
+		
+		
+		
+		productImage.setProductId(Integer.parseInt(request.getParameter("productId")));
+		
+		
 		
 		this.productImageDAO.createProductImage(productImage);
 		
 		request.setAttribute("success_messages", new String[] { "Tạo hình ảnh sản phẩm thành công" });
-		response.sendRedirect("/PetShop/admin/product-management/edit?productId="+productId);
+		response.sendRedirect("/PetShop/admin/productImage-management?page=1&limit=50");
 	}
 }
