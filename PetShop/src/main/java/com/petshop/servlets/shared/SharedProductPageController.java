@@ -41,7 +41,7 @@ public class SharedProductPageController extends BaseSharedServlet {
 		
 		if (request.getParameter("categoryId") != null) {
 			int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-			products = this.productDAO.listProductsByCategoryId(categoryId, 1, 20);
+			products = this.productDAO.listProductsByCategoryId(categoryId);
 			Category category = this.categoryDAO.getCategoryById(categoryId);
 			request.setAttribute("category", category);
 		}

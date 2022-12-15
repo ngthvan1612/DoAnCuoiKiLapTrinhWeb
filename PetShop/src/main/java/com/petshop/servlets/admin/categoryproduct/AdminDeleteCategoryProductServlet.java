@@ -33,16 +33,26 @@ public class AdminDeleteCategoryProductServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("id"));
-		int categoryProductId = Integer.parseInt(request.getParameter("id"));
+		CategoryProduct categoryProduct = new CategoryProduct();
+		
+		
+		//categoryProduct.setProductId(Integer.parseInt(request.getParameter("productId")));
+		int productId = (Integer.parseInt(request.getParameter("productId")));
+		int categoryId = (Integer.parseInt(request.getParameter("categorys")));
+		
+		categoryProduct.setProductId(productId);
+		categoryProduct.setCategoryId(categoryId);
+		
+		categoryProduct = this.categoryProductDAO.getCategoryProductByProductIdAndCategoryId(productId, categoryId);
+		int categoryProductId = categoryProduct.getId();
 		
 		this.categoryProductDAO.deleteCategoryProductById(categoryProductId);
 		
-        request.setAttribute("success_messages", new String[] { "Tạo CategoryProduct thành công" });
+        request.setAttribute("success_messages", new String[] { "Xóa CategoryProduct thành công" });
         
-        RequestDispatcher rd = request.getRequestDispatcher("/admin/categoryProduct-management");
-        rd.include(request, response);
+        //RequestDispatcher rd = request.getRequestDispatcher("/admin/categoryProduct-management");
+        //rd.include(request, response);
         
-		response.sendRedirect("/PetShop/admin/categoryProduct-management");
+        response.sendRedirect("/PetShop/admin/product-management/edit?productId="+productId);
 	}
 }
