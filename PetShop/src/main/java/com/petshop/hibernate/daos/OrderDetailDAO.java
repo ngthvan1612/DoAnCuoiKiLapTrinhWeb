@@ -21,7 +21,6 @@ public class OrderDetailDAO {
     Session session = factory.getCurrentSession();
     session.getTransaction().begin();
     
-    orderDetail.setCreatedOn(new Date(System.currentTimeMillis()));
     session.persist(orderDetail);
     session.flush();
       
@@ -75,22 +74,6 @@ public class OrderDetailDAO {
         	query.setFirstResult((page - 1) * limit);
         	query.setMaxResults(limit);
         }
-        
-        List<OrderDetail> orderDetails = query.list();
-        
-        session.getTransaction().commit();
-        return orderDetails;
-	}
-	
-	public List<OrderDetail> listOrderDetailsByOrderId(int orderId) {
-		SessionFactory factory = HibernateUtils.getSessionFactory();
-	    Session session = factory.getCurrentSession();
-	    
-        session.getTransaction().begin();
-        
-        String sql = "select p from " + OrderDetail.class.getName() + " p where p.deletedOn = null and p.orderId=:orderId";
-        Query<OrderDetail> query = session.createQuery(sql);
-        query.setParameter("orderId", orderId);
         
         List<OrderDetail> orderDetails = query.list();
         

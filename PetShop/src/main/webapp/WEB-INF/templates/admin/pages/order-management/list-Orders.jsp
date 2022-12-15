@@ -6,7 +6,7 @@
 
 <head>
   <c:import url="/WEB-INF/templates/admin/_layout/header.jsp">
-    <c:param name="title" value="Quản lý danh sách đơn hàng"/>
+    <c:param name="title" value="Quản lý danh sách động vật"/>
   </c:import>
 </head>
 
@@ -35,6 +35,7 @@
         
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
+
             <!-- Main Content -->
             <div id="content">
                 <c:import url="/WEB-INF/templates/admin/_layout/topbar.jsp"/>
@@ -51,7 +52,12 @@
                             <div class="mb-4">
                               <div class="row">
                                 <div class="col">
-                                 
+                                  <button
+                                    class="btn btn-primary"
+                                    data-toggle="modal" data-target="#modalCreateProduct"
+                                  >
+                                    Thêm
+                                  </button>
                                 </div>
                               </div>
                             </div>
@@ -60,8 +66,9 @@
                                     <thead>
                                         <tr>
                                             <th>Mã đơn hàng</th>
-                                            <th>Ngày vận chuyển</th>
-                                            <th>Trạng thái</th>
+                                            <th>Tên sản phẩm</th>
+                                            <th>Giá</th>
+                                            <th>Ngày tạo</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -69,28 +76,22 @@
                                       <c:forEach items='${requestScope["listOrders"]}' var='order'>
 	                                      <tr>
 	                                         <td>${order.getId()}</td>
+	                                         <td></td>
+	                                         <td></td>
+	                                         <td></td>
 	                                         <td>
-	                                         	<c:choose>
-		                                         	<c:when test='${order.getDeliveredAt() == null}'>
-		                                         		Chưa chuyển
-		                                         	</c:when>
-		                                         	<c:otherwise>
-		                                         		Đã chuyển ngày ${order.getDeliveredAt()}
-		                                         	</c:otherwise>
-	                                         	</c:choose>
-	                                         </td>
-	                                         <td>
-	                                         	<c:choose>
-		                                         	<c:when test='${order.getStatus() == "OK"}'>
-		                                         		Đã nhận
-		                                         	</c:when>
-		                                         	<c:otherwise>
-		                                         		Chưa nhận
-		                                         	</c:otherwise>
-	                                         	</c:choose>
-	                                         </td>
-	                                         <td>
-	                                           <a href="/PetShop/admin/order-management/details?orderId=${order.getId()}">Xem</a>
+	                                           <button
+	                                             class="btn btn-link shadow-none btn-sm"
+	                                             onclick="onEditRowClick(${product.getId()}, '${product.getProductCode()}', '${product.getProductName()}', ${product.getPrice()})"
+	                                             data-toggle="modal" data-target="#modalUpdateProduct"
+	                                           >Sửa</button>
+	                                           <button
+	                                             class="btn btn-danger shadow-none btn-sm"
+	                                             onclick="onDeleteRowClick(${product.getId()})"
+	                                             data-toggle="modal" data-target="#modalDeleteProduct"
+	                                           >
+	                                             Xóa
+	                                           </button>
 	                                         </td>
 	                                      </tr>
                                       </c:forEach>
@@ -98,9 +99,9 @@
                                 </table>
                             </div>
                             <nav aria-label="Page navigation example">
-							  <ul class="pagination justify-content-center">
-							    <li class="page-item">
-							      <c:choose>
+														  <ul class="pagination justify-content-center">
+														    <li class="page-item">
+														      <c:choose>
                                     <c:when test='${currentPage <= 1}'>
                                       <a class="page-link" aria-disabled="true">Trang trước</a>
                                     </c:when>
@@ -108,29 +109,29 @@
                                       <a class="page-link" href="/PetShop/admin/product-management?page=${currentPage - 1}&limit=${numberOfRowsPerPage}">Trang trước</a>
                                     </c:otherwise>
                                   </c:choose>
-							    </li>
-							    <c:forEach begin="1" end="${(pageSize + numberOfRowsPerPage - 1) / numberOfRowsPerPage}" var='pageId'>
-							      <c:choose>
-							        <c:when test='${pageId == currentPage}'>
-							          <li class="page-item active"><a class="page-link" href="/PetShop/admin/product-management?page=${pageId}&limit=${numberOfRowsPerPage}">${pageId}</a></li>														          
-							        </c:when>
-							        <c:otherwise>
-							          <li class="page-item"><a class="page-link" href="/PetShop/admin/product-management?page=${pageId}&limit=${numberOfRowsPerPage}">${pageId}</a></li>
-							        </c:otherwise>
-							      </c:choose>
-							    </c:forEach>
-							    <li class="page-item">
-							      <c:choose>
-							        <c:when test='${currentPage >= (pageSize + numberOfRowsPerPage - 1) / numberOfRowsPerPage - 1}'>
-							          <a class="page-link" aria-disabled="true">Trang sau</a>
-							        </c:when>
-							        <c:otherwise>
-							          <a class="page-link" href="/PetShop/admin/product-management?page=${currentPage + 1}&limit=${numberOfRowsPerPage}">Trang sau</a>
-							        </c:otherwise>
-							      </c:choose>
-							    </li>
-							  </ul>
-							</nav>
+														    </li>
+														    <c:forEach begin="1" end="${(pageSize + numberOfRowsPerPage - 1) / numberOfRowsPerPage}" var='pageId'>
+														      <c:choose>
+														        <c:when test='${pageId == currentPage}'>
+														          <li class="page-item active"><a class="page-link" href="/PetShop/admin/product-management?page=${pageId}&limit=${numberOfRowsPerPage}">${pageId}</a></li>														          
+														        </c:when>
+														        <c:otherwise>
+														          <li class="page-item"><a class="page-link" href="/PetShop/admin/product-management?page=${pageId}&limit=${numberOfRowsPerPage}">${pageId}</a></li>
+														        </c:otherwise>
+														      </c:choose>
+														    </c:forEach>
+														    <li class="page-item">
+														      <c:choose>
+														        <c:when test='${currentPage >= (pageSize + numberOfRowsPerPage - 1) / numberOfRowsPerPage - 1}'>
+														          <a class="page-link" aria-disabled="true">Trang sau</a>
+														        </c:when>
+														        <c:otherwise>
+														          <a class="page-link" href="/PetShop/admin/product-management?page=${currentPage + 1}&limit=${numberOfRowsPerPage}">Trang sau</a>
+														        </c:otherwise>
+														      </c:choose>
+														    </li>
+														  </ul>
+														</nav>
                         </div>
                     </div>
 

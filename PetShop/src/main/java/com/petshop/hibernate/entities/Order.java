@@ -20,12 +20,7 @@ public class Order {
   private Date deletedOn;
   private Date deliveredAt;
   private Integer userId;
-  private String fullName;
-  private String phoneNumber;
-  private String address;
-  private String note;
-  private String orderMethod;
-  private String status;
+  
 
   public Order() {
     
@@ -85,58 +80,5 @@ public class Order {
   public void setUserId(Integer userId) {
     this.userId = userId;
   }
-
-  	@Column(name="FullName")
-	public String getFullName() {
-		return fullName;
-	}
-	
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
-	
-	@Column(name="PhoneNumber")
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-	
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-	
-	@Column(name="Address")
-	public String getAddress() {
-		return address;
-	}
-	
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	
-	@Column(name="Note")
-	public String getNote() {
-		return note;
-	}
-	
-	public void setNote(String note) {
-		this.note = note;
-	}
-	
-	@Column(name="OrderMethod")
-	public String getOrderMethod() {
-		return orderMethod;
-	}
-	
-	public void setOrderMethod(String orderMethod) {
-		this.orderMethod = orderMethod;
-	}
-	
-	@Column(name="Status")
-	public String getStatus() {
-		return status;
-	}
-	
-	public void setStatus(String status) {
-		this.status = status;
-	}
+  
 }

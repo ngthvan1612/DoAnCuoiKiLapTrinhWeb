@@ -27,27 +27,44 @@ public class SharedCartController extends BaseSharedServlet {
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
+		String cartValue = null;
 		
+		if (request.getCookies() != null) {
+			for (Cookie cookie : request.getCookies()) {
+				if (cookie.getName().equals("CART")) {
+					cartValue = cookie.getValue(); 
+				}
+			}
+		}
+		
+		if (cartValue == null) {
+			cartValue = "";
+		}
+		
+		CartItemManager cartItemManaged = new CartItemManager(cartValue);
+		
+		List<CartItem> cartItems = cartItemManaged.toListCartsItems();
+		
+		for (CartItem cartItem : cartItems) {
+			int productId = cartItem.getProductId();
+			Product product = this.productDAO.getProductById(productId);
+			if (product != null) {
+				String productName = product.getProductName();
+				int productPrice = product.getPrice();
+				
+				cartItem.setProductName(productName);
+				cartItem.setPrice(productPrice);
+			}
+		}
+		
+		request.setAttribute("cartItems", cartItems);
 		request.getRequestDispatcher("/WEB-INF/templates/shared/cart.jsp").forward(request, response);
 	}
 
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doPost(request, response);
-		CartItemManager cartItemManaged = this.getCartItemManager(request, response);
-		List<CartItem> deletedCart = new ArrayList<>();
-		for (CartItem cartItem : cartItemManaged.toListCartsItems()) {
-			String productNameFromRequest = "productId-" + cartItem.getProductId();
-			int num = Integer.parseInt(request.getParameter(productNameFromRequest));
-			if (num <= 0) {
-				deletedCart.add(cartItem);
-			}
-			cartItem.setNum(num);
-		}
-		for (CartItem cartItem : deletedCart) {
-			cartItemManaged.removeProduct(cartItem.getProductId());
-		}
-		response.addCookie(new Cookie("CART", cartItemManaged.toCookieValue()));
-		response.sendRedirect("/PetShop/thanh-toan");
+		response.setStatus(405);
+		
 	}
 }

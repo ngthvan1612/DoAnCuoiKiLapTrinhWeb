@@ -25,7 +25,6 @@
      <mapping class="com.petshop.hibernate.entities.ProductImage" />
      <mapping class="com.petshop.hibernate.entities.ProductDescription" />
      <mapping class="com.petshop.hibernate.entities.Order" />
-     <mapping class="com.petshop.hibernate.entities.OrderDetail" />
  </session-factory>
 
 </hibernate-configuration>

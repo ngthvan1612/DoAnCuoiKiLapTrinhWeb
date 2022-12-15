@@ -46,8 +46,9 @@
 	                    class="itemImg"
 	                  />
 	                  <h3>${cartItem.productName}</h3>
+	
 	                  <p>
-	                    <input type="text" class="qty product-quantity" id="product-${cartItem.getProductId()}" placeholder="${cartItem.getNum()}"/> x <span class="vnd">${cartItem.getPrice()}</span>
+	                    <input type="text" class="qty" placeholder="${cartItem.getNum()}"/> x <span class="vnd">${cartItem.getPrice()}</span>
 	                  </p>
 	                </div>
 	
@@ -72,11 +73,8 @@
               <span class="label">Tạm tính</span><span class="value">$35.00</span>
             </li>
             <li class="totalRow">
-            	<form method="post">
-            		<c:forEach items="${cartItems}" var='cartItem'>
-            			<input type="hidden" name="productId-${cartItem.getProductId()}" value='${cartItem.getNum()}'>
-            		</c:forEach>
-            		<input type="submit" class="btn continue" value="Tiếp tục">
+            	<form>
+            		<a href="/PetShop/thanh-toan" class="btn continue">Tiếp tục</a>
             	</form>
             </li>
           </ul>
@@ -91,17 +89,8 @@
       $( this ).parent().parent().parent().hide( 400 );
     
     })
-    $('a.btn.continue').click(function(){
+      $('a.btn.continue').click(function(){
         $('li.items').show(400);
-    })
-    $('input.product-quantity').change(function() {
-    	const sender = $(this);
-    	const id = sender.attr('id');
-    	const newValue = sender.val();
-    	const productId = id.split('-')[1];
-    	console.log(productId);
-    	const elm = document.getElementsByName('productId-' + productId)[0];
-    	elm.value = newValue;
     })
     </script>
   </body>

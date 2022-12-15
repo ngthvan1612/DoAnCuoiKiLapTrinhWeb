@@ -38,7 +38,7 @@ public class AdminUpdateCategoryProductServlet extends HttpServlet {
 		categoryProduct.setId(Integer.parseInt(request.getParameter("id")));
 		
 		
-		//categoryProduct.setAnimalId(Integer.parseInt(request.getParameter("animalId")));
+		categoryProduct.setAnimalId(Integer.parseInt(request.getParameter("animalId")));
 		
 		
 		
