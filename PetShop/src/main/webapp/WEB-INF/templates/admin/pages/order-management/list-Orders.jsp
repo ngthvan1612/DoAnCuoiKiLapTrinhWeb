@@ -15,19 +15,19 @@
     <div id="wrapper">
         <c:import url="/WEB-INF/templates/admin/_layout/sidebar.jsp"/>
         
-        <c:import url="/WEB-INF/templates/admin/pages/product-management/create-product-modal.jsp">
+        <c:import url="/WEB-INF/templates/admin/pages/product-management/create-Product-modal.jsp">
           <c:param name="modalId" value="modalCreateProduct" />
           <c:param name="formName" value="formCreateProduct"/>
           <c:param name="targetUrl" value="/PetShop/admin/product-management/create"/>
         </c:import>
         
-        <c:import url="/WEB-INF/templates/admin/pages/product-management/update-product-modal.jsp">
+        <c:import url="/WEB-INF/templates/admin/pages/product-management/update-Product-modal.jsp">
           <c:param name="modalId" value="modalUpdateProduct" />
           <c:param name="formName" value="formUpdateProduct"/>
           <c:param name="targetUrl" value="/PetShop/admin/product-management/update"/>
         </c:import>
         
-        <c:import url="/WEB-INF/templates/admin/pages/product-management/delete-product-modal.jsp">
+        <c:import url="/WEB-INF/templates/admin/pages/product-management/delete-Product-modal.jsp">
           <c:param name="modalId" value="modalDeleteProduct" />
           <c:param name="formName" value="formDeleteProduct"/>
           <c:param name="targetUrl" value="/PetShop/admin/product-management/delete"/>
