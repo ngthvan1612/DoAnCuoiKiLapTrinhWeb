@@ -6,7 +6,7 @@
 
 <head>
   <c:import url="/WEB-INF/templates/admin/_layout/header.jsp">
-    <c:param name="title" value="Quản lý danh sách động vật"/>
+    <c:param name="title" value="Quản lý danh sách loại sản phẩm"/>
   </c:import>
 </head>
 

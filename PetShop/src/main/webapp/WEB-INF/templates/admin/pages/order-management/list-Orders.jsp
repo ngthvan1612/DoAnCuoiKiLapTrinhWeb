@@ -43,7 +43,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Sản phẩm đang kinh doanh</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Danh sách đơn hàng</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -60,6 +60,7 @@
                                     <thead>
                                         <tr>
                                             <th>Mã đơn hàng</th>
+                                            <th>Tên khách hàng</th>
                                             <th>Ngày vận chuyển</th>
                                             <th>Trạng thái</th>
                                             <th></th>
@@ -69,6 +70,7 @@
                                       <c:forEach items='${requestScope["listOrders"]}' var='order'>
 	                                      <tr>
 	                                         <td>${order.getId()}</td>
+	                                         <td>${order.getFullName()}</td>
 	                                         <td>
 	                                         	<c:choose>
 		                                         	<c:when test='${order.getDeliveredAt() == null}'>

@@ -28,7 +28,9 @@
   	
   
     <form class="petshop-cart"
-    	method="post">
+    	name="frm-petshop-payment"
+    	method="post"
+    	onsubmit="return onPaymentSubmit()">
       <div class="wrap cf">
         <div class="heading cf">
           <h1>Thông tin mua hàng</h1>
@@ -89,6 +91,7 @@
                           class="form-check-input"
                           type="radio"
                           name="isCod"
+                          checked
                         />
                         <label class="form-check-label" for="flexRadioDefault1">
                           Thanh toán khi giao hàng (COD)
@@ -104,7 +107,7 @@
                 <ul class="cartWrap">
                     <h2>Đơn hàng</h2>
                   <c:forEach items="${cartItems}" var='cartItem'>
-                  <li class="items odd">
+                  <li class="items odd" name="cart-items-check">
                     <div class="infoWrap">
                       <div class="cartSection">
                         <img
@@ -151,10 +154,36 @@
       </div>
     </form>
   <c:import url="/WEB-INF/templates/shared/components/js-includes.jsp"></c:import>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
+    <script>
+    function onPaymentSubmit() {
+    	const form = document.forms["frm-petshop-payment"];
+    	const fullName = form["fullName"].value;
+    	const phoneNumber = form["phoneNumber"].value;
+    	const address = form["address"].value;
+    	const isCod = form["isCod"];
+    	const cartItems = document.getElementsByName('cart-items-check');
+    	if (cartItems.length == 0) {
+    		alert('Không có đơn hàng nào trong giỏ hàng cả');
+    		return false;
+    	}
+    	if (fullName == null || fullName == '') {
+    		alert('Họ và tên không được trống');
+    		return false;
+    	}
+    	if (phoneNumber == null || phoneNumber == '') {
+    		alert('Số điện thoại không được trống');
+    		return false;
+    	}
+    	if (address == null || address == '') {
+    		alert('Địa chỉ không được trống');
+    		return false;
+    	}
+    	if (!isCod.checked) {
+    		alert('Vui lòng chọn phương thức thanh toán');
+    		return false;
+    	}
+    	return true;
+    }
+    </script>
   </body>
 </html>

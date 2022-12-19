@@ -18,7 +18,7 @@
     <div class="container-fluid pt-5">
         <div class="container">
             <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
-                <h2 class="text-primary text-uppercase">Đồ án cuối kì lập trình web cô Dịp dễ thương</h2>
+                <h2 class="text-primary text-uppercase">Đồ án cuối kì lập trình web </h2>
             </div>
             <div class="row g-5">
                 <div class="col-lg-7">
@@ -47,7 +47,7 @@
                         <div class="d-flex align-items-center mb-2">
                             <i class="bi bi-geo-alt fs-1 text-primary me-3"></i>
                             <div class="text-start">
-                                <h6 class="text-uppercase mb-1">Được thực hiện bởi nhóm ABCDEF - CTF 2022</h6>
+                                <h6 class="text-uppercase mb-1">Được thực hiện bởi nhóm ABCDEF </h6>
                                 <span>20110276 - Trần Thị Bảo Ngọccccc</span><br/>
                                 <span>20110224 - Nguyễn Thành Văn</span>
                             </div>

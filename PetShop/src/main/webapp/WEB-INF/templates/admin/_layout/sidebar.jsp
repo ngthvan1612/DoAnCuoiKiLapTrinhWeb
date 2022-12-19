@@ -73,12 +73,12 @@
                     <span>Tất cả đơn hàng</span></a>
             </li>
             
-            <div class="sidebar-heading">
+            <div class="sidebar-heading" style="display:none">
                 Cài đặt
             </div>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item" style="display:none">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#settingCollapse"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>

@@ -98,7 +98,7 @@ public class OrderDAO {
 	    
         session.getTransaction().begin();
         
-        String sql = "select p from " + Order.class.getName() + " p where p.deletedOn = null";
+        String sql = "select p from " + Order.class.getName() + " p where p.deletedOn = null order by p.id desc";
         Query<Order> query = session.createQuery(sql);
         
         if ((page - 1) * limit >= 0) {

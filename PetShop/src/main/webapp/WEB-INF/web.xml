@@ -253,4 +253,14 @@
     <servlet-name>AdminEditCategoryServlet</servlet-name>
     <url-pattern>/AdminEditCategoryServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SharedSignupController</display-name>
+    <servlet-name>SharedSignupController</servlet-name>
+    <servlet-class>com.petshop.servlets.shared.SharedSignupController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SharedSignupController</servlet-name>
+    <url-pattern>/SharedSignupController</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -38,6 +38,6 @@ public class AddProductToCart extends HttpServlet {
 		
 		response.addCookie(new Cookie("CART", cartItemManaged.toCookieValue()));
 		
-		response.sendRedirect("/PetShop");
+		response.sendRedirect("/PetShop/gio-hang");
 	}
 }
