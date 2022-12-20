@@ -37,13 +37,18 @@ public class SharedProductPageController extends BaseSharedServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		List<Product> products = null;
-		List<ProductView> listProductViews = new ArrayList<>();;
+		List<ProductView> listProductViews = new ArrayList<>();
 		
 		if (request.getParameter("categoryId") != null) {
 			int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 			products = this.productDAO.listProductsByCategoryId(categoryId);
 			Category category = this.categoryDAO.getCategoryById(categoryId);
 			request.setAttribute("category", category);
+		}
+		else if (request.getParameter("productName") != null){
+			String productName = request.getParameter("productName");
+			products = this.productDAO.listProductByProductName(productName, 1, 500);
+
 		}
 		else {
 			products = this.productDAO.listProducts(1, 20);
@@ -66,6 +71,7 @@ public class SharedProductPageController extends BaseSharedServlet {
 			listProductViews.add(productView);
 		}
 		
+
 		request.setAttribute("listProducts", listProductViews);
 		request.getRequestDispatcher("/WEB-INF/templates/shared/product.jsp").forward(request, response);
 	}

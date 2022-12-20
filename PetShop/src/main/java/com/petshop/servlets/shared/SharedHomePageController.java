@@ -11,20 +11,23 @@ import java.util.List;
 
 import com.petshop.hibernate.daos.AnimalDAO;
 import com.petshop.hibernate.daos.CategoryDAO;
+import com.petshop.hibernate.daos.ProductDAO;
 import com.petshop.hibernate.entities.Animal;
 import com.petshop.hibernate.entities.Category;
+import com.petshop.hibernate.entities.Product;
 
 @WebServlet("")
 public class SharedHomePageController extends BaseSharedServlet {
 	private static final long serialVersionUID = 1L;
        
     public SharedHomePageController() {
-        super();
+		super();
     }
     
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	super.doGet(request, response);
+		
     	
 		request.getRequestDispatcher("/WEB-INF/templates/shared/index.jsp").forward(request, response);
 	}

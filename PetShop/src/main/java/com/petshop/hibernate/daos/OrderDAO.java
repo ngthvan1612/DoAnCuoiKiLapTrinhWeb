@@ -112,6 +112,28 @@ public class OrderDAO {
         return orders;
 	}
 	
+	public List<Order> listOrderByUserId(int UserId, int page, int limit) {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+	    Session session = factory.getCurrentSession();
+	    
+        session.getTransaction().begin();
+        
+        String sql = "select p from " + Order.class.getName() + " p where p.deletedOn = null and p.userId=:userId order by p.id desc";
+        Query<Order> query = session.createQuery(sql);
+        
+        query.setParameter("userId", UserId);
+        
+        if ((page - 1) * limit >= 0) {
+        	query.setFirstResult((page - 1) * limit);
+        	query.setMaxResults(limit);
+        }
+        
+        List<Order> orders = query.list();
+        
+        session.getTransaction().commit();
+        return orders;
+	}
+	
 	public Order getOrderById(int orderId) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 	    Session session = factory.getCurrentSession();

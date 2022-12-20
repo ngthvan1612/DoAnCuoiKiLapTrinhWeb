@@ -11,8 +11,61 @@
 </head>
 
 <body>
+	<style>
+	@import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");
+	body{
+		font-family: "Poppins", sans-serif;
+		font-weight: 40;
+	}
+	
+	.height{
+		margin: 10px !important;
+		height: auto;
+	}
+	
+	.search{
+		/*position: relative;*/
+		box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+	}
+	
+	.search input{
+	 height: 40px;
+	 text-indent: 25px;
+	 border: 2px solid #6B8E23;
+	}
+	
+	
+	.search input:focus{
+	 box-shadow: none;
+	 border: 2px solid green;
+	}
+	
+	.search .fa-search{
+	 position: absolute;
+	 top: 20px;
+	 left: 16px;
+	}
+	
+	.search button{
+	 position: absolute;
+	 top: 5px;
+	 right: 5px;
+	 height: 50px;
+	 width: 110px;
+	 background: blue;
+	}
+	</style>
+	
     <c:import url="/WEB-INF/templates/shared/components/navbar.jsp"/>
     <c:import url="/WEB-INF/templates/shared/components/errorHandle.jsp"/>
+    <form method="get" action="/PetShop/san-pham">
+        <div class="input-group mb-3" style="width: 500px; margin-left: auto; margin-right: auto; margin-top: 10px">
+          <input type="text" class="form-control" name="productName" placeholder="Bạn tìm gì?"  >
+          <input type="submit" class="btn btn-primary" value="Tìm">
+
+    	</div>
+    </form>
+    
     
     <!-- Hero Start -->
     <div class="container-fluid bg-primary py-5 mb-5 hero-header">
