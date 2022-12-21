@@ -23,7 +23,7 @@ public class SharedLogoutController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Cookie[] cookies = request.getCookies();
 		for (Cookie cookie : cookies) {
-			if (cookie.getName().equals("JCOOKIE")) {
+			if (cookie.getName().equals("login-id")) {
 				cookie.setMaxAge(0);
 				cookie.setValue("");
 				response.addCookie(cookie);

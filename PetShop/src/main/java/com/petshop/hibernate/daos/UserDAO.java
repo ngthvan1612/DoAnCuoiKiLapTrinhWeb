@@ -1,5 +1,8 @@
 package com.petshop.hibernate.daos;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -21,11 +24,67 @@ public class UserDAO {
     Session session = factory.getCurrentSession();
     session.getTransaction().begin();
     
+    user.setPassword(this.getMd5FromString(user.getPassword()));
+    
     session.persist(user);
     session.flush();
       
     session.getTransaction().commit();
 		return user;
+	}
+	
+	public boolean checkUserExistedByUsername(String username) {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+    Session session = factory.getCurrentSession();
+    
+    session.getTransaction().begin();
+    
+    String sql = "select p from " + User.class.getName() + " p where username=:username";
+    Query<User> query = session.createQuery(sql);
+    query.setParameter("username", username);
+    
+    List<User> users = query.list();
+    
+    session.getTransaction().commit();
+    
+    return users.size() > 0;
+	}
+
+	public boolean checkUserExistedByPhoneNumber(String phoneNumber) {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+    Session session = factory.getCurrentSession();
+    
+    session.getTransaction().begin();
+    
+    String sql = "select p from " + User.class.getName() + " p where phoneNumber=:phoneNumber";
+    Query<User> query = session.createQuery(sql);
+    query.setParameter("phoneNumber", phoneNumber);
+    
+    List<User> users = query.list();
+    
+    session.getTransaction().commit();
+    
+    return users.size() > 0;
+	}	
+	
+	private static String convertByteToHex1(byte[] data) {
+	  BigInteger number = new BigInteger(1, data);
+	  String hashtext = number.toString(16);
+	  while (hashtext.length() < 32) {
+	    hashtext = "0" + hashtext;
+	  }
+	  return hashtext;
+	}
+
+	
+	private String getMd5FromString(String input) {
+	 try {
+	    MessageDigest md = MessageDigest.getInstance("MD5");
+	    byte[] messageDigest = md.digest(input.getBytes());
+	    return convertByteToHex1(messageDigest);
+	  } catch (NoSuchAlgorithmException e) {
+	    throw new RuntimeException(e);
+	  }
 	}
 	
 	public User updateUser(User user) {
@@ -62,6 +121,28 @@ public class UserDAO {
         
         session.getTransaction().commit();
         return result;
+	}
+	
+	public User getUserByUsernameAndPassword(String username, String password) {
+		String hashedPassword = this.getMd5FromString(password);
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+    Session session = factory.getCurrentSession();
+    
+    session.getTransaction().begin();
+    
+    String sql = "select p from " + User.class.getName() + " p where username=:username and password=:password";
+    Query<User> query = session.createQuery(sql);
+    query.setParameter("username", username);
+    query.setParameter("password", hashedPassword);
+    
+    List<User> users = query.list();
+    
+    session.getTransaction().commit();
+    
+    if (users.size() == 0)
+    	return null;
+    
+    return users.get(0);
 	}
 	
 	public List<User> listUsers(int page, int limit) {

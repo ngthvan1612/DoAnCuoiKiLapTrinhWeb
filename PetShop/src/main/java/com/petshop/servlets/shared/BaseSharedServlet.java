@@ -6,9 +6,11 @@ import java.util.List;
 import com.petshop.hibernate.daos.AnimalDAO;
 import com.petshop.hibernate.daos.CategoryDAO;
 import com.petshop.hibernate.daos.ProductDAO;
+import com.petshop.hibernate.daos.UserDAO;
 import com.petshop.hibernate.entities.Animal;
 import com.petshop.hibernate.entities.Category;
 import com.petshop.hibernate.entities.Product;
+import com.petshop.hibernate.entities.User;
 import com.petshop.servlets.shared.cart.CartItemManager;
 
 import jakarta.servlet.ServletException;
@@ -22,16 +24,18 @@ public class BaseSharedServlet extends HttpServlet {
 	private final AnimalDAO animalDAO;
 	private final CategoryDAO categoryDAO;
 	private final ProductDAO productDAO;
+	private final UserDAO userDAO;
 	
-    public BaseSharedServlet() {
-        super();
-        
-        this.animalDAO = new AnimalDAO();
-        this.categoryDAO = new CategoryDAO();
-        this.productDAO = new ProductDAO();
-    }
-    
-    protected CartItemManager getCartItemManager(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  public BaseSharedServlet() {
+      super();
+      
+      this.animalDAO = new AnimalDAO();
+      this.categoryDAO = new CategoryDAO();
+      this.productDAO = new ProductDAO();
+      this.userDAO = new UserDAO();
+  }
+  
+  protected CartItemManager getCartItemManager(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cartValue = "";
 		
 		if (request.getCookies() != null) {
@@ -45,17 +49,42 @@ public class BaseSharedServlet extends HttpServlet {
 		CartItemManager cartItemManaged = new CartItemManager(cartValue);
 		
 		return cartItemManaged;
-    }
+  }
+  
+  protected User getCurrentAuthenticatedUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  	User user = null;
+		for (Cookie cookie : request.getCookies()) {
+			if (cookie.getName().equals("login-id")) {
+				try {
+					int userId = Integer.parseInt(cookie.getValue());
+					user = this.userDAO.getUserById(userId);
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return user;
+  }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//AUTHENTICATION
+		User user = this.getCurrentAuthenticatedUser(request, response);
+		System.out.print("OK ha");
+		System.out.println(user);
+		if (user != null) {
+			request.setAttribute("is_authenticated", true);
+			request.setAttribute("authenticated_user", user);
+		}
+		
 		//NAV-BAR
 		List<Animal> animals = this.animalDAO.listAnimals(0, 90000);
-	    List<Category> categories = this.categoryDAO.listCategorys(0, 9000);
-        
-        request.setAttribute("listAnimals", animals);
-        request.setAttribute("listCategories", categories);
-        
-        //Cart
+    List<Category> categories = this.categoryDAO.listCategorys(0, 9000);
+      
+      request.setAttribute("listAnimals", animals);
+      request.setAttribute("listCategories", categories);
+      
+      //Cart
 		String cartValue = null;
 		
 		if (request.getCookies() != null) {

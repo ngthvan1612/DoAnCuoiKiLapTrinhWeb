@@ -8,12 +8,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.petshop.hibernate.daos.UserDAO;
+import com.petshop.hibernate.entities.User;
+
 @WebServlet("/login")
 public class SharedLoginController extends BaseSharedServlet {
 	private static final long serialVersionUID = 1L;
+	private final UserDAO userDAO;
        
     public SharedLoginController() {
         super();
+        this.userDAO = new UserDAO();
     }
 
     @Override
@@ -28,20 +33,15 @@ public class SharedLoginController extends BaseSharedServlet {
 
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		super.doPost(request, response);
-		response.setStatus(405);
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		System.out.printf("Username = %s\nPassword = %s\n", username, password);
 		
-		if (username.equals("admin") && password.equals("123abc")) {
-			response.addCookie(new Cookie("JCOOKIE", "admin"));
-			response.sendRedirect("/PetShop");
-		}
-		else if (username.equals("baongoc") && password.equals("123456")) {
-			response.addCookie(new Cookie("JCOOKIE", "tran-thi-bao-ngoc"));
+		User user = this.userDAO.getUserByUsernameAndPassword(username, password);
+		
+		if (user != null) {
+			response.addCookie(new Cookie("login-id", Integer.toString(user.getId())));
 			response.sendRedirect("/PetShop");
 		}
 		else {
