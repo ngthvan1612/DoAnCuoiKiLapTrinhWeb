@@ -9,6 +9,7 @@ import com.petshop.hibernate.daos.OrderDetailDAO;
 import com.petshop.hibernate.daos.ProductDAO;
 import com.petshop.hibernate.entities.Order;
 import com.petshop.hibernate.entities.OrderDetail;
+import com.petshop.hibernate.entities.Product;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -36,8 +37,9 @@ public class SharedOrderController extends BaseSharedServlet {
 		List<Order> orders = null;
 		List<OrderDetail> orderDetails = null;
 		List<OrderView> orderViews = new ArrayList<>();
+		List<Product> products = this.productDAO.listAllProducts();
 		
-		orders = this.orderDAO.listOrders(1, 20);
+		orders = this.orderDAO.listOrders(1, 100);
 		
 		for (var order: orders)
 		{
@@ -46,10 +48,20 @@ public class SharedOrderController extends BaseSharedServlet {
 			orderView.setStatus(order.getStatus());
 			orderDetails = this.orderDetailDAO.listOrderDetailsByOrderId(order.getId());
 			orderView.setOrderDetails(orderDetails);
+			int totalPrice = 0;
+			for (var orderDetail: orderDetails)
+			{
+				int total = 0;
+				Product product = this.productDAO.getProductById(orderDetail.getProductId());
+				total = orderDetail.getQuantity()*product.getPrice();
+				totalPrice = totalPrice + total;
+			}
+			orderView.setTotalPrice(totalPrice);
 			orderViews.add(orderView);
 		}
 		
 		request.setAttribute("listOrders", orderViews);
+		request.setAttribute("listProducts", products);
 		request.getRequestDispatcher("/WEB-INF/templates/shared/order.jsp").forward(request, response);
 	}
 

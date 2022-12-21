@@ -8,6 +8,20 @@ public class OrderView {
 	private int id;
 	private String status;
 	private List<OrderDetail> orderDetails;
+	private int totalPrice;
+	public OrderView(int id, String status, List<OrderDetail> orderDetails, int totalPrice) {
+		super();
+		this.id = id;
+		this.status = status;
+		this.orderDetails = orderDetails;
+		this.totalPrice = totalPrice;
+	}
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 	public int getId() {
 		return id;
 	}
@@ -24,12 +38,6 @@ public class OrderView {
 		return orderDetails;
 	}
 	public void setOrderDetails(List<OrderDetail> orderDetails) {
-		this.orderDetails = orderDetails;
-	}
-	public OrderView(int id, String status, List<OrderDetail> orderDetails) {
-		super();
-		this.id = id;
-		this.status = status;
 		this.orderDetails = orderDetails;
 	}
 	

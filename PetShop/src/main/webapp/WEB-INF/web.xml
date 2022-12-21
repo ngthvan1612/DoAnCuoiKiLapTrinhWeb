@@ -275,6 +275,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>SharedUpdateOrderController</display-name>
+    <servlet-name>SharedUpdateOrderController</servlet-name>
+    <servlet-class>com.petshop.servlets.shared.SharedUpdateOrderController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SharedUpdateOrderController</servlet-name>
+    <url-pattern>/SharedUpdateOrderController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>CreateFeedBackServlet</display-name>
     <servlet-name>CreateFeedBackServlet</servlet-name>
     <servlet-class>com.petshop.servlets.admin.feedback.CreateFeedBackServlet</servlet-class>

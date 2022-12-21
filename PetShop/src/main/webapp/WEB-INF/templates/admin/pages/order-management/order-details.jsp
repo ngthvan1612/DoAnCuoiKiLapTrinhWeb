@@ -120,7 +120,7 @@
 										</div>
                             		</form>
                             	</div>
-                            	<div class="col-4">
+                            	<div class="col-4" style="display: none;">
                             		<form class="card" method="post" action="/PetShop/admin/order-management/update-detail-status">
                             			<input type="hidden" value="${order.getId()}" name="orderId">
                             			<div class="card-body">
