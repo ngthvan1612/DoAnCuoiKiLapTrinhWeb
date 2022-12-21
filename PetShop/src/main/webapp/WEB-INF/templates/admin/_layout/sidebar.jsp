@@ -73,6 +73,17 @@
                     <span>Tất cả đơn hàng</span></a>
             </li>
             
+            <div class="sidebar-heading">
+                Người dùng
+            </div>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/PetShop/admin/user-management">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Quản lí người dùng</span></a>
+            </li>
+            
             <div class="sidebar-heading" style="display:none">
                 Cài đặt
             </div>

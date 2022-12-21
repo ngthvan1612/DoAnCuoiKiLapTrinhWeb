@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     
 	  <c:import url="/WEB-INF/templates/shared/components/header.jsp">
-	    <c:param name="title" value="Đơn hàng"/>
+	    <c:param name="title" value="Đơn hàng của tôi"/>
 	  </c:import>
   </head>
 <body>
@@ -22,7 +22,7 @@
     <div class="petshop-cart">
       <div class="wrap cf">
         <h1 class="projTitle">
-          PETSHOP ABCDEF
+          ĐƠN HÀNG CỦA TÔI
         </h1>
         <c:forEach items="${listOrders}" var="order">
 	        <form method="post" action="/PetShop/don-hang/update" onsubmit="return onUpdateOrder()">

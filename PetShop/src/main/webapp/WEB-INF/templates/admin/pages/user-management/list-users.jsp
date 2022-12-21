@@ -44,7 +44,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Sản phẩm đang kinh doanh</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Tài khoản người dùng</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -65,29 +65,29 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Mã sản phẩm</th>
-                                            <th>Tên sản phẩm</th>
-                                            <th>Giá</th>
-                                            <th>Ngày tạo</th>
+                                            <th>Mã khách hàng</th>
+                                            <th>Tên khách hàng</th>
+                                            <th>Số điện thoại</th>
+                                            <th>Địa chỉ</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      <c:forEach items='${requestScope["listProducts"]}' var='product'>
+                                      <c:forEach items='${requestScope["listUsers"]}' var='user'>
 	                                      <tr>
-	                                         <td>${product.getProductCode()}</td>
-	                                         <td>${product.getProductName()}</td>
-	                                         <td>${product.getPrice()} VNĐ</td>
-	                                         <td>${product.getCreatedOn()}</td>
+	                                         <td>${user.getId()}</td>
+	                                         <td>${user.getFullName()}</td>
+	                                         <td>${user.getPhoneNumber()} VNĐ</td>
+	                                         <td>${user.getAddress()}</td>
 	                                         <td>
 	                                           <button
 	                                             class="btn btn-link shadow-none btn-sm"
-	                                             onclick="onEditRowClick(${product.getId()}, '${product.getProductCode()}', '${product.getProductName()}', ${product.getPrice()})"
+	                                             onclick="onEditRowClick(${user.getId()}, '${user.getFullName()}', '${user.getPhoneNumber()}', ${user.getAddress()})"
 	                                             data-toggle="modal" data-target="#modalUpdateProduct"
 	                                           >Sửa</button>
 	                                           <button
 	                                             class="btn btn-danger shadow-none btn-sm"
-	                                             onclick="onDeleteRowClick(${product.getId()})"
+	                                             onclick="onDeleteRowClick(${user.getId()})"
 	                                             data-toggle="modal" data-target="#modalDeleteProduct"
 	                                           >
 	                                             Xóa

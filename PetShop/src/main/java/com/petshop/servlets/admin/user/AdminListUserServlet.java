@@ -43,7 +43,7 @@ public class AdminListUserServlet extends HttpServlet {
         request.setAttribute("numberOfRowsPerPage", limit);
         request.setAttribute("currentPage", currentPage);
         
-        request.getRequestDispatcher("/WEB-INF/templates/admin/pages/user-management/list-user.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/templates/admin/pages/user-management/list-users.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
