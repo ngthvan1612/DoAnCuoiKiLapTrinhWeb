@@ -24,63 +24,69 @@
         <h1 class="projTitle">
           PETSHOP ABCDEF
         </h1>
-        <div class="heading cf">
-          <h1>Đơn hàng của tôi</h1>
-          <a href="/PetShop/" class="continue">Tiếp tục mua sắm</a>
-        </div>
-        <div class="cart">
-          <!--    <ul class="tableHead">
-        <li class="prodHeader">Product</li>
-        <li>Quantity</li>
-        <li>Total</li>
-         <li>Remove</li>
-      </ul>-->
-          <ul class="cartWrap">
-          	<c:forEach items="${cartItems}" var='cartItem'>
-          		<li class="items odd">
-	              <div class="infoWrap">
-	                <div class="cartSection">
-	                  <img
-	                    src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg"
-	                    alt=""
-	                    class="itemImg"
-	                  />
-	                  <h3>${cartItem.productName}</h3>
-	                  <p>
-	                    <input type="text" class="qty product-quantity" id="product-${cartItem.getProductId()}" placeholder="${cartItem.getNum()}"/> x <span class="vnd">${cartItem.getPrice()}</span>
-	                  </p>
-	                </div>
+        <c:forEach items="${listOrders}" var="order">
+	        <form method="post" action="/PetShop/don-hang/update" onsubmit="return onUpdateOrder()">
+	        <div class="heading cf">
+	          <h1>Đơn hàng #${order.getId()}</h1>
+	          
+              <input type="hidden" name="orderId" value="${order.getId()}">
+              <input type="submit" class="btn btn-primary" style="background: green; margin-left: 500px" value="Đã nhận hàng">
+        	</form>
+	        </div method="" action="/PetShop/donhang">
+	        <div class="cart">
+	          <ul class="cartWrap">
+	          <span class="label">Tổng </span><span class="value">${order.getTotalPrice()}</span><br/>
+	          <c:choose>
+		        	<c:when test='${order.getStatus() =="Đã nhận hàng"}'>
+		        		Trạng thái: Đã nhận hàng
+		        	</c:when>
+		        	<c:otherwise>
+		        		Trạng thái: Đang giao hàng
+		        	</c:otherwise>
+	       		</c:choose>
+	          	<c:forEach items="${order.getOrderDetails()}" var='cartItem'>
+	          		<li class="items odd">
+		              <div class="infoWrap">
+		                <div class="cartSection">
+		                  <img
+		                    src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg"
+		                    alt=""
+		                    class="itemImg"
+		                  />
+		                  <c:forEach items='${requestScope["listProducts"]}' var='product'>
+			                  <c:if test="${cartItem.getProductId() == product.getId()}">
+			                  <h3>${product.getProductName()}</h3>
+			                  <p>
+			                    <input type="text" class="qty product-quantity" id="product-${cartItem.getProductId()}" placeholder="${cartItem.getQuantity()}"/> x <span class="vnd">${product.getPrice()}</span>
+			                  </p>
+			                  </c:if>
+		                  </c:forEach>
+		                </div>
+		
+		                <div class="prodTotal cartSection">
+		                  <p class="vnd"></p>
+		                </div>
+		              </div>
+		            </li>
+	          	</c:forEach>
+	          </ul>
+	        </div>
 	
-	                <div class="prodTotal cartSection">
-	                  <p class="vnd"></p>
-	                </div>
-	                <div class="cartSection removeWrap" style="margin-left: auto; margin-right: 0px; float:right;">
-	                	<form method="post" action="/PetShop/xoa-san-pham">
-	                		<input type="hidden" name="productId" value="${cartItem.getProductId()}">
-	                  		<input type="submit" href="#" class="remove" value="x">
-	                  	</form>
-	                </div>
-	              </div>
+	        <div class="subtotal cf" style="display: none;">
+	          <ul>
+	            <li class="totalRow final" >
+	              <span class="label">Tổng</span><span class="value">${order.getTotalPrice()}</span>
 	            </li>
-          	</c:forEach>
-          </ul>
-        </div>
-
-        <div class="subtotal cf">
-          <ul>
-            <li class="totalRow final" style="display:none">
-              <span class="label">Tạm tính</span><span class="value">$35.00</span>
-            </li>
-            <li class="totalRow">
-            	<form method="post">
-            		<c:forEach items="${cartItems}" var='cartItem'>
-            			<input type="hidden" name="productId-${cartItem.getProductId()}" value='${cartItem.getNum()}'>
-            		</c:forEach>
-            		<input type="submit" class="btn continue" value="Tiếp tục">
-            	</form>
-            </li>
-          </ul>
-        </div>
+	            <li class="totalRow">
+	            	<form method="post">
+	            		<c:forEach items="${cartItems}" var='cartItem'>
+	            			<input type="hidden" name="productId-${cartItem.getProductId()}" value='${cartItem.getNum()}'>
+	            		</c:forEach>
+	            	</form>
+	            </li>
+	          </ul>
+	        </div>
+        </c:forEach>
       </div>
     </div>
     
@@ -103,6 +109,12 @@
     	const elm = document.getElementsByName('productId-' + productId)[0];
     	elm.value = newValue;
     })
+    function onUpdateOrder() {
+          if (confirm('Bạn có chắc xác nhận đã nhận hàng không?')) {
+            return true;
+          }
+          return false;
+        }
     </script>
 </body>
 </html>

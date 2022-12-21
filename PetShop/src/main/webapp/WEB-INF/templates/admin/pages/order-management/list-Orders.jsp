@@ -83,11 +83,11 @@
 	                                         </td>
 	                                         <td>
 	                                         	<c:choose>
-		                                         	<c:when test='${order.getStatus() == "OK"}'>
-		                                         		Đã nhận
+		                                         	<c:when test='${order.getStatus() == "Đã nhận hàng"}'>
+		                                         		Đã nhận hàng
 		                                         	</c:when>
 		                                         	<c:otherwise>
-		                                         		Chưa nhận
+		                                         		Chưa nhận hàng
 		                                         	</c:otherwise>
 	                                         	</c:choose>
 	                                         </td>

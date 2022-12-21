@@ -33,7 +33,6 @@ public class AdminDeleteOrderServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("id"));
 		int orderId = Integer.parseInt(request.getParameter("id"));
 		
 		this.orderDAO.deleteOrderById(orderId);
