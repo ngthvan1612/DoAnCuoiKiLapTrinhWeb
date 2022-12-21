@@ -11,7 +11,7 @@
      <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
      <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=TestCrawlData;</property>
      <property name="hibernate.connection.username">sa</property>
-     <property name="hibernate.connection.password">123456</property>
+     <property name="hibernate.connection.password">1234</property>
      <property name="hibernate.show_sql">true</property>
      <property name="hibernate.connection.release_mode">auto</property>
      <property name="current_session_context_class">thread</property>
@@ -26,6 +26,7 @@
      <mapping class="com.petshop.hibernate.entities.ProductDescription" />
      <mapping class="com.petshop.hibernate.entities.Order" />
      <mapping class="com.petshop.hibernate.entities.OrderDetail" />
+     <mapping class="com.petshop.hibernate.entities.FeedBack" />
  </session-factory>
 
 </hibernate-configuration>

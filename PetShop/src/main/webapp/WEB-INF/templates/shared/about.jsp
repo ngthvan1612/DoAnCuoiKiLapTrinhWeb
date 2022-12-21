@@ -20,21 +20,31 @@
             <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
                 <h2 class="text-primary text-uppercase">Đồ án cuối kì lập trình web </h2>
             </div>
+            <div>
+              <c:forEach items="${success_messages}" var="message">
+              <div class="alert alert-success" role="alert">
+							  ${message}
+							</div>
+							</c:forEach>
+            </div>
             <div class="row g-5">
                 <div class="col-lg-7">
                     <form method="post">
                         <div class="row g-3">
                             <div class="col-12">
-                                <input type="text" class="form-control bg-light border-0 px-4" placeholder="Tên của bạn" style="height: 55px;">
+                                <input type="text" required class="form-control bg-light border-0 px-4" placeholder="Tên của bạn" style="height: 55px;" name="fullName">
                             </div>
                             <div class="col-12">
-                                <input type="email" class="form-control bg-light border-0 px-4" placeholder="Email" style="height: 55px;">
+                                <input type="email" required class="form-control bg-light border-0 px-4" placeholder="Email" style="height: 55px;" name="email">
                             </div>
                             <div class="col-12">
-                                <input type="text" class="form-control bg-light border-0 px-4" placeholder="Tiêu đề" style="height: 55px;">
+                                <input type="text" required class="form-control bg-light border-0 px-4" placeholder="Số điện thoại" style="height: 55px;" name="phoneNumber">
                             </div>
                             <div class="col-12">
-                                <textarea class="form-control bg-light border-0 px-4 py-3" rows="8" placeholder="Nội dung"></textarea>
+                                <input type="text" required class="form-control bg-light border-0 px-4" placeholder="Địa chỉ" style="height: 55px;" name="address">
+                            </div>
+                            <div class="col-12">
+                                <textarea required class="form-control bg-light border-0 px-4 py-3" rows="8" placeholder="Nội dung" name="content"></textarea>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary w-100 py-3" type="submit">Gửi đánh giá</button>

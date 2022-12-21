@@ -24,16 +24,16 @@ public class SharedProductPageController extends BaseSharedServlet {
 	private final ProductImageDAO productImageDAO;
 	private final ProductDescriptionDAO productDescriptionDAO;
 	
-    public SharedProductPageController() {
-        super();
-        
-        this.productDAO = new ProductDAO();
-        this.categoryDAO = new CategoryDAO();
-        this.productImageDAO = new ProductImageDAO();
-        this.productDescriptionDAO = new ProductDescriptionDAO();
-    }
+  public SharedProductPageController() {
+      super();
+      
+      this.productDAO = new ProductDAO();
+      this.categoryDAO = new CategoryDAO();
+      this.productImageDAO = new ProductImageDAO();
+      this.productDescriptionDAO = new ProductDescriptionDAO();
+  }
     
-    @Override
+  @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		List<Product> products = null;
@@ -76,7 +76,7 @@ public class SharedProductPageController extends BaseSharedServlet {
 		request.getRequestDispatcher("/WEB-INF/templates/shared/product.jsp").forward(request, response);
 	}
     
-    @Override
+  @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doPost(request, response);
 		response.setStatus(405);

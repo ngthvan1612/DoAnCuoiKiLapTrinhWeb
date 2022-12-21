@@ -273,4 +273,34 @@
     <servlet-name>SharedOrderController</servlet-name>
     <url-pattern>/SharedOrderController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CreateFeedBackServlet</display-name>
+    <servlet-name>CreateFeedBackServlet</servlet-name>
+    <servlet-class>com.petshop.servlets.admin.feedback.CreateFeedBackServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateFeedBackServlet</servlet-name>
+    <url-pattern>/CreateFeedBackServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FeedBack</display-name>
+    <servlet-name>FeedBack</servlet-name>
+    <servlet-class>com.petshop.servlets.shared.feedback.FeedBack</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FeedBack</servlet-name>
+    <url-pattern>/FeedBack</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListFeedbackServlet</display-name>
+    <servlet-name>ListFeedbackServlet</servlet-name>
+    <servlet-class>com.petshop.servlets.admin.feedback.ListFeedbackServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListFeedbackServlet</servlet-name>
+    <url-pattern>/ListFeedbackServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
