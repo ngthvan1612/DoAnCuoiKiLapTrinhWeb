@@ -51,11 +51,11 @@
             <a href="/PetShop/don-hang" class="nav-item nav-link">Đơn hàng</a>
             <a href="/PetShop/ve-chung-toi" class="nav-item nav-link">Liên hệ</a>
             <c:choose>
-              <c:when test='${requestScope["isAuthenticated"] == true}'>
+              <c:when test='${requestScope["is_authenticated"] == true}'>
                 <div class="nav-item dropdown">
-	                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Chào, ${requestScope["username"]}</a>
+	                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Chào, ${requestScope["authenticated_user"].getUsername()}</a>
 	                <div class="dropdown-menu m-0 dropdown-menu-end">
-	                  <c:if test='${requestScope["isAdmin"]}'>
+	                  <c:if test='${requestScope["authenticated_user"].getRole().equals("ADMIN")}'>
 	                    <button class="dropdown-item">
 	                     <a href="/PetShop/admin">Quản lý website</a>
 	                    </button>

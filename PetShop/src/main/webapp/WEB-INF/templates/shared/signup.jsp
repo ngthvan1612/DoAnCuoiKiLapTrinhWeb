@@ -22,17 +22,20 @@
                     <form action="/PetShop/signup" method="post">
                         <c:import url="/WEB-INF/templates/shared/components/errorHandle.jsp"/>
                         <div class="row g-3">
-                            <div class="col-12">
-                                <input type="email" class="form-control bg-light border-0 px-4" placeholder="Email" style="height: 55px;" name="username">
+                          <div class="col-12">
+                                <input type="text" required class="form-control bg-light border-0 px-4" placeholder="Tên đăng nhập" style="height: 55px;" name="userName">
                             </div>
                             <div class="col-12">
-                                <input type="password" class="form-control bg-light border-0 px-4" placeholder="Mật khẩu" style="height: 55px;" name="password">
+                                <input type="text" required class="form-control bg-light border-0 px-4" placeholder="Tên đầy đủ" style="height: 55px;" name="fullName">
                             </div>
                             <div class="col-12">
-                                <input type="text" class="form-control bg-light border-0 px-4" placeholder="Số điện thoại" style="height: 55px;" name="phoneNumber">
+                                <input type="password" required class="form-control bg-light border-0 px-4" placeholder="Mật khẩu" style="height: 55px;" name="password">
                             </div>
                             <div class="col-12">
-                                <input type="text" class="form-control bg-light border-0 px-4" placeholder="Địa chỉ" style="height: 55px;" name="address">
+                                <input type="text" required class="form-control bg-light border-0 px-4" placeholder="Số điện thoại" style="height: 55px;" name="phoneNumber">
+                            </div>
+                            <div class="col-12">
+                                <input type="text" required class="form-control bg-light border-0 px-4" placeholder="Địa chỉ" style="height: 55px;" name="address">
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary w-100 py-3" type="submit">Đăng ký</button>
