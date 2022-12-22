@@ -40,11 +40,13 @@ public class SharedSignupController extends BaseSharedServlet {
 		
 		if (this.userDAO.checkUserExistedByUsername(username)) {
 			request.setAttribute("error_messages", new String[] { "Tên đăng nhập đã tồn tại" });
+			request.getRequestDispatcher("/WEB-INF/templates/shared/signup.jsp").forward(request, response);
 			return;
 		}
 		
 		if (this.userDAO.checkUserExistedByPhoneNumber(phoneNumber)) {
 			request.setAttribute("error_messages", new String[] { "Số điện thoại này đã được sử dụng" });
+			request.getRequestDispatcher("/WEB-INF/templates/shared/signup.jsp").forward(request, response);
 			return;
 		}
 		
@@ -59,7 +61,7 @@ public class SharedSignupController extends BaseSharedServlet {
 		
 		this.userDAO.createUser(user);
 		
-		request.getRequestDispatcher("/WEB-INF/templates/shared/signup.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/templates/shared/login.jsp").forward(request, response);
 	}
 
 }
