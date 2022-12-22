@@ -53,6 +53,8 @@ public class BaseSharedServlet extends HttpServlet {
   
   protected User getCurrentAuthenticatedUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
   	User user = null;
+  	if (request.getCookies() == null)
+  		return null;
 		for (Cookie cookie : request.getCookies()) {
 			if (cookie.getName().equals("login-id")) {
 				try {
