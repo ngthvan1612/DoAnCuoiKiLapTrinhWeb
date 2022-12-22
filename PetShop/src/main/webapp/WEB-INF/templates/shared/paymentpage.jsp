@@ -55,11 +55,13 @@
                     class="form-control"
                     placeholder="HoVaTen"
                     name="fullName"
+                    value="${requestScope['authenticated_user'].getFullName()}"
                   />
                   <label for="floatingInput">Họ và tên</label>
                 </div>
                 <div class="form-floating mb-3">
-                  <input type="text" class="form-control" placeholder="SDT" name="phoneNumber"/>
+                  <input type="text" class="form-control" placeholder="SDT" name="phoneNumber"
+                  	value="${requestScope['authenticated_user'].getPhoneNumber()}"/>
                   <label for="floatingInput">Số điện thoại</label>
                 </div>
                 <div class="form-floating mb-3">
@@ -68,6 +70,7 @@
                     class="form-control"
                     placeholder="DiaChi"
                     name="address"
+                    value="${requestScope['authenticated_user'].getAddress()}"
                   />
                   <label for="floatingPassword">Địa chỉ </label>
                 </div>

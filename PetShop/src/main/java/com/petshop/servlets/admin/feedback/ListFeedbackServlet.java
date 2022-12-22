@@ -33,10 +33,10 @@ public class ListFeedbackServlet extends HttpServlet {
 		}
 		
 		List<FeedBack> feedBacks = this.feedbackDAO.listFeedBacks(page, limit);
-		System.out.println("OKKK");
-		for (FeedBack feedBack : feedBacks) {
-			System.out.println(feedBack.getId() + " " + feedBack.getFullName() + " " + feedBack.getPhoneNumber() + " " + feedBack.getEmail());
-		}
+		long numberOfFeedbacks = this.feedbackDAO.numberOfFeedbacks();
+		request.setAttribute("numberOfRowsPerPage", numberOfFeedbacks);
+		request.setAttribute("listFeedbacks", feedBacks);
+		request.getRequestDispatcher("/WEB-INF/templates/admin/pages/feedback-management/list-feedbacks.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

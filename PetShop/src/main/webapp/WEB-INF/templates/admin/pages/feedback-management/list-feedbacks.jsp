@@ -5,7 +5,7 @@
 
  <head>
      <c:import url="/WEB-INF/templates/admin/_layout/header.jsp">
-         <c:param name="title" value="Quản lý tài khoản người dùng" />
+         <c:param name="title" value="Danh sách feedback" />
      </c:import>
  </head>
 
@@ -14,10 +14,10 @@
      <div id="wrapper">
          <c:import url="/WEB-INF/templates/admin/_layout/sidebar.jsp" />
 
-         <c:import url="/WEB-INF/templates/admin/pages/user-management/update-user-modal.jsp">
-             <c:param name="modalId" value="modalUpdatePassword" />
-             <c:param name="formName" value="formUpdatePassword" />
-             <c:param name="targetUrl" value="/PetShop/admin/user-management/update" />
+         <c:import url="/WEB-INF/templates/admin/pages/feedback-management/feedback-modal.jsp">
+             <c:param name="modalId" value="modalViewFeedback" />
+             <c:param name="formName" value="formViewFeedback" />
+             <c:param name="targetUrl" value="/PetShop/admin/feedbacks" />
          </c:import>
 
 
@@ -32,52 +32,38 @@
                  <div class="container-fluid">
 
                      <!-- Page Heading -->
-                     <h1 class="h3 mb-2 text-gray-800">Tài khoản người dùng</h1>
+                     <h1 class="h3 mb-2 text-gray-800">Feedbacks</h1>
 
                      <!-- DataTales Example -->
                      <div class="card shadow mb-4">
                          <div class="card-body">
-                         <div class="mb-4">
-		                    <div class="row">
-		                      <div class="col">
-		                      </div>
-		                      <div class="col">
-		                        <form method="get" action="/PetShop/admin/user-management">
-		                          <div class="input-group mb-3">
-		                            <input type="text" class="form-control" name="fullName" value="${fullName}">
-		                            <input type="submit" class="btn btn-primary" value="Tìm">
-		
-		                          </div>
-		                        </form>
-		                      </div>
-		                    </div>
-		                  </div>
 
                              <div class="table-responsive">
                                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                      <thead>
                                          <tr>
-                                             <th>Mã khách hàng</th>
                                              <th>Tên khách hàng</th>
+                                             <th>Email</th>
                                              <th>Số điện thoại</th>
                                              <th>Địa chỉ</th>
-                                             <th></th>
+                                             <th>Nội dung</th>
                                          </tr>
                                      </thead>
                                      <tbody>
-                                         <c:forEach items='${requestScope["listUsers"]}' var='user'>
+                                         <c:forEach items='${requestScope["listFeedbacks"]}' var='feedback'>
                                              <tr>
-                                                 <td>${user.getId()}</td>
-                                                 <td>${user.getFullName()}</td>
-                                                 <td>${user.getPhoneNumber()}</td>
-                                                 <td>${user.getAddress()}</td>
-                                                 <td>
+                                                 <td>${feedback.getFullName()}</td>
+                                                 <td>${feedback.getEmail()}</td>
+                                                 <td>${feedback.getPhoneNumber()}</td>
+                                                 <td>${feedback.getAddress()}</td>
+                                                 <td>${feedback.getContent()}</td>
+                                                 <td style="display: none;">
                                                      <button class="btn btn-link shadow-none btn-sm"
-                                                         onclick="onEditRowClick(${user.getId()}, '${user.getFullName()}')"
+                                                         onclick="onEditRowClick(${feedback.getId()}, '${feedback.getFullName()}', '${feedback.getEmail()}', '${feedback.getPhoneNumber()}', '${feedback.getAddress()}', '${feedback.getContent()}')"
                                                          data-toggle="modal"
-                                                         data-target="#modalUpdatePassword">Đổi mật khẩu</button>
+                                                         data-target="#modalViewFeedback">Xem</button>
                                                      <button class="btn btn-danger shadow-none btn-sm"
-                                                         onclick="onDeleteRowClick(${user.getId()})"
+                                                         onclick="onDeleteRowClick(${feedback.getId()})"
                                                          data-toggle="modal" data-target="#modalDeleteProduct"
                                                          style="display: none;">
                                                          Xóa
@@ -97,7 +83,7 @@
                                              </c:when>
                                              <c:otherwise>
                                                  <a class="page-link"
-                                                     href="/PetShop/admin/user-management?page=${currentPage - 1}&limit=${numberOfRowsPerPage}">Trang
+                                                     href="/PetShop/admin/product-management?page=${currentPage - 1}&limit=${numberOfRowsPerPage}">Trang
                                                      trước</a>
                                              </c:otherwise>
                                          </c:choose>
@@ -108,12 +94,12 @@
                                          <c:choose>
                                              <c:when test='${pageId == currentPage}'>
                                                  <li class="page-item active"><a class="page-link"
-                                                         href="/PetShop/admin/user-management?page=${pageId}&limit=${numberOfRowsPerPage}">${pageId}</a>
+                                                         href="/PetShop/admin/feedbacks?page=${pageId}&limit=${numberOfRowsPerPage}">${pageId}</a>
                                                  </li>
                                              </c:when>
                                              <c:otherwise>
                                                  <li class="page-item"><a class="page-link"
-                                                         href="/PetShop/admin/user-management?page=${pageId}&limit=${numberOfRowsPerPage}">${pageId}</a>
+                                                         href="/PetShop/admin/feedbacks?page=${pageId}&limit=${numberOfRowsPerPage}">${pageId}</a>
                                                  </li>
                                              </c:otherwise>
                                          </c:choose>
@@ -126,7 +112,7 @@
                                              </c:when>
                                              <c:otherwise>
                                                  <a class="page-link"
-                                                     href="/PetShop/admin/user-management?page=${currentPage + 1}&limit=${numberOfRowsPerPage}">Trang
+                                                     href="/PetShop/admin/feedbacks?page=${currentPage + 1}&limit=${numberOfRowsPerPage}">Trang
                                                      sau</a>
                                              </c:otherwise>
                                          </c:choose>
@@ -164,10 +150,14 @@
      </a>
 
      <script>
-         function onEditRowClick(id, fullName) {
-             const form = document.forms["formUpdatePassword"];
+         function onEditRowClick(id, fullName, email, phoneNumber, address, content) {
+             const form = document.forms["formViewFeedback"];
              form["id"].value = id;
              form["fullName"].value = fullName;
+             form["email"].value = email;
+             form["phoneNumber"].value = phoneNumber;
+             form["address"].value = address;
+             form["content"].value = content;
          }
      </script>
  </body>

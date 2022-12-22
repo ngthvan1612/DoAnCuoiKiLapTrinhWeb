@@ -107,17 +107,17 @@
                                       <a class="page-link" aria-disabled="true">Trang trước</a>
                                     </c:when>
                                     <c:otherwise>
-                                      <a class="page-link" href="/PetShop/admin/product-management?page=${currentPage - 1}&limit=${numberOfRowsPerPage}">Trang trước</a>
+                                      <a class="page-link" href="/PetShop/admin/order-management?page=${currentPage - 1}&limit=${numberOfRowsPerPage}">Trang trước</a>
                                     </c:otherwise>
                                   </c:choose>
 							    </li>
 							    <c:forEach begin="1" end="${(pageSize + numberOfRowsPerPage - 1) / numberOfRowsPerPage}" var='pageId'>
 							      <c:choose>
 							        <c:when test='${pageId == currentPage}'>
-							          <li class="page-item active"><a class="page-link" href="/PetShop/admin/product-management?page=${pageId}&limit=${numberOfRowsPerPage}">${pageId}</a></li>														          
+							          <li class="page-item active"><a class="page-link" href="/PetShop/admin/order-management?page=${pageId}&limit=${numberOfRowsPerPage}">${pageId}</a></li>														          
 							        </c:when>
 							        <c:otherwise>
-							          <li class="page-item"><a class="page-link" href="/PetShop/admin/product-management?page=${pageId}&limit=${numberOfRowsPerPage}">${pageId}</a></li>
+							          <li class="page-item"><a class="page-link" href="/PetShop/admin/order-management?page=${pageId}&limit=${numberOfRowsPerPage}">${pageId}</a></li>
 							        </c:otherwise>
 							      </c:choose>
 							    </c:forEach>
@@ -127,7 +127,7 @@
 							          <a class="page-link" aria-disabled="true">Trang sau</a>
 							        </c:when>
 							        <c:otherwise>
-							          <a class="page-link" href="/PetShop/admin/product-management?page=${currentPage + 1}&limit=${numberOfRowsPerPage}">Trang sau</a>
+							          <a class="page-link" href="/PetShop/admin/order-management?page=${currentPage + 1}&limit=${numberOfRowsPerPage}">Trang sau</a>
 							        </c:otherwise>
 							      </c:choose>
 							    </li>

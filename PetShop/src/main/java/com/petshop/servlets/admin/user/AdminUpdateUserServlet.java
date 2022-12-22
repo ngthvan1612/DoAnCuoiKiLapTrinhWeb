@@ -33,36 +33,9 @@ public class AdminUpdateUserServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User user = new User();
-
-		user.setId(Integer.parseInt(request.getParameter("id")));
-		
-		
-		user.setUsername(request.getParameter("username"));
-		
-		
-		
-		user.setPassword(request.getParameter("password"));
-		
-		
-		
-		user.setFullName(request.getParameter("fullName"));
-		
-		
-		
-		user.setRole(request.getParameter("role"));
-		
-		
-		
-		user.setAddress(request.getParameter("address"));
-		
-		
-		
-		user.setPhoneNumber(request.getParameter("phoneNumber"));
-		
-		
-		
-		this.userDAO.updateUser(user);
+		int userId = Integer.parseInt(request.getParameter("id"));
+		String password = request.getParameter("password");
+		this.userDAO.updatePasswordByUserId(userId, password);
 
 		request.setAttribute("success_messages", new String[] { "Cập nhật người dùng thành công" });
 		response.sendRedirect("/PetShop/admin/user-management?page=1&limit=50");

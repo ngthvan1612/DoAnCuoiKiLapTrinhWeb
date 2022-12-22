@@ -35,6 +35,10 @@ public class BaseSharedServlet extends HttpServlet {
       this.userDAO = new UserDAO();
   }
   
+  protected boolean isAuthenticated(HttpServletRequest request) throws ServletException, IOException {
+	  return this.getCurrentAuthenticatedUser(request, null) != null;
+  }
+  
   protected CartItemManager getCartItemManager(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cartValue = "";
 		

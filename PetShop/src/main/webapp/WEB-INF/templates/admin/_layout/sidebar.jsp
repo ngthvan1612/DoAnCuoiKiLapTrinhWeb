@@ -33,11 +33,16 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Danh mục
+                Sản phẩm	
             </div>
 
+			<li class="nav-item active">
+                <a class="nav-link" href="/PetShop/admin/animal-management">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Loại thú cưng</span></a>
+            </li>
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item" style="display: none;">
                 <a class="nav-link collapsed" href="/PetShop/admin" data-toggle="collapse" data-target="#animalsCollapse"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
@@ -70,7 +75,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/PetShop/admin/order-management">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Tất cả đơn hàng</span></a>
+                    <span>Quản lý đơn hàng</span></a>
             </li>
             
             <div class="sidebar-heading">
@@ -81,7 +86,18 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/PetShop/admin/user-management">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Quản lí người dùng</span></a>
+                    <span>Quản lý người dùng</span></a>
+            </li>
+            
+            <div class="sidebar-heading">
+                Feedback
+            </div>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/PetShop/admin/feedbacks">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Các feedback</span></a>
             </li>
             
             <div class="sidebar-heading" style="display:none">

@@ -42,11 +42,11 @@ public class AdminListProductServlet extends HttpServlet {
 			String productName = request.getParameter("productName");
 			products = this.productDAO.listProductByProductName(productName, currentPage, limit);
 
-  		numberOfProducts = this.productDAO.numberOfProductByProductName(productName);
+			numberOfProducts = this.productDAO.numberOfProductByProductName(productName);
 		}
 		else {
 			products = this.productDAO.listProducts(currentPage, limit);
-  		numberOfProducts = this.productDAO.numberOfProducts();
+			numberOfProducts = this.productDAO.numberOfProducts();
 		}
 		
         request.setAttribute("productName", request.getParameter("productName"));

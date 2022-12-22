@@ -112,7 +112,7 @@ public class OrderDAO {
         return orders;
 	}
 	
-	public List<Order> listOrderByUserId(int UserId, int page, int limit) {
+	public List<Order> listOrderByUserId(int UserId) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 	    Session session = factory.getCurrentSession();
 	    
@@ -123,10 +123,6 @@ public class OrderDAO {
         
         query.setParameter("userId", UserId);
         
-        if ((page - 1) * limit >= 0) {
-        	query.setFirstResult((page - 1) * limit);
-        	query.setMaxResults(limit);
-        }
         
         List<Order> orders = query.list();
         

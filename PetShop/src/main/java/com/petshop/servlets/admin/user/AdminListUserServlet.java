@@ -28,6 +28,8 @@ public class AdminListUserServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int currentPage = 1, limit = 20;
+		List<User> users = null;
+		long numberOfUsers = 0;
 		
 		if (request.getParameter("page") != null)
 			currentPage = Integer.parseInt(request.getParameter("page"));
@@ -35,9 +37,17 @@ public class AdminListUserServlet extends HttpServlet {
 		if (request.getParameter("limit") != null)
 			limit = Integer.parseInt(request.getParameter("limit"));
 		
-	    List<User> users = this.userDAO.listUsers(currentPage, limit);
-	    long numberOfUsers = this.userDAO.numberOfUsers();
+		if (request.getParameter("fullName") != null) {
+			String fullName = request.getParameter("fullName");
+			users = this.userDAO.listUserByFullName(fullName, currentPage, limit);
+			numberOfUsers = this.userDAO.numberOfUserByFullName(fullName);
+		}
+		else {
+		    users = this.userDAO.listUsers(currentPage, limit);
+		    numberOfUsers = this.userDAO.numberOfUsers();
+		}
         
+		request.setAttribute("fullName", request.getParameter("fullName"));
         request.setAttribute("listUsers", users);
         request.setAttribute("pageSize", numberOfUsers);
         request.setAttribute("numberOfRowsPerPage", limit);

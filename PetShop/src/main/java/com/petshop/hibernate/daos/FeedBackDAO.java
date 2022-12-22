@@ -29,6 +29,21 @@ public class FeedBackDAO {
 		return feedBack;
 	}
 	
+	public long numberOfFeedbacks() {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+	    Session session = factory.getCurrentSession();
+	    
+        session.getTransaction().begin();
+        
+        String sql = "select count(*) from " + FeedBack.class.getName() + " p";
+        Query query = session.createQuery(sql);
+        
+        long result = (long)query.uniqueResult();
+        
+        session.getTransaction().commit();
+        return result;
+	}
+	
 	public List<FeedBack> listFeedBacks(int page, int limit) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
     Session session = factory.getCurrentSession();

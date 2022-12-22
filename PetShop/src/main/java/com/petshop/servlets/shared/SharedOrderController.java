@@ -10,6 +10,7 @@ import com.petshop.hibernate.daos.ProductDAO;
 import com.petshop.hibernate.entities.Order;
 import com.petshop.hibernate.entities.OrderDetail;
 import com.petshop.hibernate.entities.Product;
+import com.petshop.hibernate.entities.User;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -39,29 +40,34 @@ public class SharedOrderController extends BaseSharedServlet {
 		List<OrderView> orderViews = new ArrayList<>();
 		List<Product> products = this.productDAO.listAllProducts();
 		
-		orders = this.orderDAO.listOrders(1, 100);
-		
-		for (var order: orders)
-		{
-			OrderView orderView = new OrderView();
-			orderView.setId(order.getId());
-			orderView.setStatus(order.getStatus());
-			orderDetails = this.orderDetailDAO.listOrderDetailsByOrderId(order.getId());
-			orderView.setOrderDetails(orderDetails);
-			int totalPrice = 0;
-			for (var orderDetail: orderDetails)
+		User authenticatedUser = this.getCurrentAuthenticatedUser(request, response);
+		if (authenticatedUser != null) {
+			int userId = authenticatedUser.getId();
+			orders = this.orderDAO.listOrderByUserId(userId);
+			
+			for (var order: orders)
 			{
-				int total = 0;
-				Product product = this.productDAO.getProductById(orderDetail.getProductId());
-				total = orderDetail.getQuantity()*product.getPrice();
-				totalPrice = totalPrice + total;
+				OrderView orderView = new OrderView();
+				orderView.setId(order.getId());
+				orderView.setStatus(order.getStatus());
+				orderDetails = this.orderDetailDAO.listOrderDetailsByOrderId(order.getId());
+				orderView.setOrderDetails(orderDetails);
+				int totalPrice = 0;
+				for (var orderDetail: orderDetails)
+				{
+					int total = 0;
+					Product product = this.productDAO.getProductById(orderDetail.getProductId());
+					total = orderDetail.getQuantity()*product.getPrice();
+					totalPrice = totalPrice + total;
+				}
+				orderView.setTotalPrice(totalPrice);
+				orderViews.add(orderView);
 			}
-			orderView.setTotalPrice(totalPrice);
-			orderViews.add(orderView);
+			
+			request.setAttribute("listOrders", orderViews);
+			request.setAttribute("listProducts", products);
 		}
 		
-		request.setAttribute("listOrders", orderViews);
-		request.setAttribute("listProducts", products);
 		request.getRequestDispatcher("/WEB-INF/templates/shared/order.jsp").forward(request, response);
 	}
 

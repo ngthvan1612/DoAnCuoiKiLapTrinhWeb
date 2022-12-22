@@ -16,6 +16,7 @@ import com.petshop.hibernate.daos.ProductDAO;
 import com.petshop.hibernate.entities.Order;
 import com.petshop.hibernate.entities.OrderDetail;
 import com.petshop.hibernate.entities.Product;
+import com.petshop.hibernate.entities.User;
 import com.petshop.servlets.shared.cart.CartItemManager;
 
 @WebServlet("/thanh-toan")
@@ -39,27 +40,23 @@ public class SharedPaymentPageController extends BaseSharedServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	super.doGet(request, response);
 		
-		request.getRequestDispatcher("/WEB-INF/templates/shared/paymentpage.jsp").forward(request, response);
+    	if (!this.isAuthenticated(request))
+    		request.getRequestDispatcher("/WEB-INF/templates/shared/login.jsp").forward(request, response);
+    	else
+    		request.getRequestDispatcher("/WEB-INF/templates/shared/paymentpage.jsp").forward(request, response);
 	}
 
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	super.doPost(request, response);
     	
+    	int userId = this.getCurrentAuthenticatedUser(request, response).getId();
     	String fullName = request.getParameter("fullName");
 		String phoneNumber = request.getParameter("phoneNumber");
 		String address = request.getParameter("address");
 		String isCod = request.getParameter("isCod");
 		String note = request.getParameter("note");
-		
-		//Save
-		
-		System.out.println(fullName);
-		System.out.println(phoneNumber);
-		System.out.println(address);
-		System.out.println(isCod);
-		System.out.println(note);
-		
+				
 		CartItemManager cartItemManaged = this.getCartItemManager(request, response);
 		
 		Order order = new Order();
@@ -68,6 +65,7 @@ public class SharedPaymentPageController extends BaseSharedServlet {
 		order.setAddress(address);
 		order.setOrderMethod("COD");
 		order.setNote(note);
+		order.setUserId(userId);
 		
 		this.orderDAO.createOrder(order);
 		
@@ -82,6 +80,6 @@ public class SharedPaymentPageController extends BaseSharedServlet {
 		}
 		
 		response.addCookie(new Cookie("CART", ""));
-		response.sendRedirect("/PetShop");
+		response.sendRedirect("/PetShop/don-hang");
 	}
 }

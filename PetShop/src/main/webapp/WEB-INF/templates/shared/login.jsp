@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
   <c:import url="/WEB-INF/templates/shared/components/header.jsp">
-    <c:param name="title" value="Trang chủ"/>
+    <c:param name="title" value="Đăng nhập"/>
   </c:import>
 </head>
 

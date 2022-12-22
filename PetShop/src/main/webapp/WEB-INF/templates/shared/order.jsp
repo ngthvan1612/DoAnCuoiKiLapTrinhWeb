@@ -28,20 +28,29 @@
 	        <form method="post" action="/PetShop/don-hang/update" onsubmit="return onUpdateOrder()">
 	        <div class="heading cf">
 	          <h1>Đơn hàng #${order.getId()}</h1>
-	          
-              <input type="hidden" name="orderId" value="${order.getId()}">
-              <input type="submit" class="btn btn-primary" style="background: green; margin-left: 500px" value="Đã nhận hàng">
+	          <c:choose>
+	          <c:when test='${order.getStatus() =="Đã nhận hàng"}'>
+	        		<input type="hidden" name="orderId" value="${order.getId()}">
+              		<input class="btn btn-primary" 
+              		style="background: green;margin-left: 500px" value="Đã nhận hàng" readonly>
+        	</c:when>
+        	<c:otherwise>
+        		<input type="hidden" name="orderId" value="${order.getId()}">
+           		<input type="submit" class="btn btn-primary" 
+	           		style="background-color: #aaaaaa;margin-left: 500px" value="Đánh dấu đã nhận hàng">
+        	</c:otherwise>
+              </c:choose>
         	</form>
 	        </div method="" action="/PetShop/donhang">
 	        <div class="cart">
 	          <ul class="cartWrap">
-	          <span class="label">Tổng </span><span class="value">${order.getTotalPrice()}</span><br/>
+	          <h3 class="label"; style="font-size: 20px;">Tổng: ${order.getTotalPrice()} VNĐ</h3><br/>
 	          <c:choose>
 		        	<c:when test='${order.getStatus() =="Đã nhận hàng"}'>
-		        		Trạng thái: Đã nhận hàng
+		        		<h3 style="color: darkgreen; font-size: 20px;">Trạng thái: Đã nhận hàng</h3>
 		        	</c:when>
 		        	<c:otherwise>
-		        		Trạng thái: Đang giao hàng
+		        		<h3 style="color: red;font-size: 20px">Trạng thái: Đang giao hàng</h3>
 		        	</c:otherwise>
 	       		</c:choose>
 	          	<c:forEach items="${order.getOrderDetails()}" var='cartItem'>

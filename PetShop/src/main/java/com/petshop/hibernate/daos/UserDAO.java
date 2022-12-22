@@ -12,6 +12,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import com.petshop.hibernate.HibernateUtils;
+import com.petshop.hibernate.entities.Product;
 import com.petshop.hibernate.entities.User;
 
 public class UserDAO {
@@ -108,6 +109,22 @@ public class UserDAO {
       return entity;
 	}
 	
+	public User updatePasswordByUserId(int id, String password) {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+	    Session session = factory.getCurrentSession();
+	    session.getTransaction().begin();
+	    
+	    User entity = (User)session.get(User.class, id);
+	    
+	    entity.setPassword(this.getMd5FromString(password));
+	    
+	    session.update(entity);
+	    
+	    session.flush();
+      session.getTransaction().commit();
+      return entity;
+	}
+	
 	public long numberOfUsers() {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 	    Session session = factory.getCurrentSession();
@@ -116,6 +133,22 @@ public class UserDAO {
         
         String sql = "select count(*) from " + User.class.getName() + " p where p.deletedOn = null";
         Query query = session.createQuery(sql);
+        
+        long result = (long)query.uniqueResult();
+        
+        session.getTransaction().commit();
+        return result;
+	}
+	
+	public long numberOfUserByFullName(String fullName) {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+	    Session session = factory.getCurrentSession();
+	    
+        session.getTransaction().begin();
+        
+        String sql = "select count(*) from " + User.class.getName() + " p where p.deletedOn = null and p.fullName like :fullName";
+        Query query = session.createQuery(sql);
+        query.setParameter("fullName","%" + fullName + "%");
         
         long result = (long)query.uniqueResult();
         
@@ -154,6 +187,27 @@ public class UserDAO {
         String sql = "select p from " + User.class.getName() + " p where p.deletedOn = null";
         Query<User> query = session.createQuery(sql);
         
+        if ((page - 1) * limit >= 0) {
+        	query.setFirstResult((page - 1) * limit);
+        	query.setMaxResults(limit);
+        }
+        
+        List<User> users = query.list();
+        
+        session.getTransaction().commit();
+        return users;
+	}
+	
+	public List<User> listUserByFullName(String fullName, int page, int limit) {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+	    Session session = factory.getCurrentSession();
+	    
+        session.getTransaction().begin();
+        
+        String sql = "select p from " + User.class.getName() + " p where p.deletedOn = null and p.fullName like :fullName";
+        Query<User> query = session.createQuery(sql);
+        query.setParameter("fullName","%" + fullName + "%");
+        		
         if ((page - 1) * limit >= 0) {
         	query.setFirstResult((page - 1) * limit);
         	query.setMaxResults(limit);
